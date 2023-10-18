@@ -1,0 +1,10 @@
+all:
+  hosts:
+    linode:
+      ansible_host: 172.104.153.65
+      ansible_user: root
+#    x513:
+#      ansible_host: maluch.mikr.us
+#      ansible_port: 10513
+#      ansible_user: root
+    

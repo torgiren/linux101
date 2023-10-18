@@ -1,0 +1,52 @@
+- hosts:
+  - all
+  tasks:
+  - name: install packages
+    apt:
+      name:
+        - apache2
+        - libapache2-mod-php
+        - php
+        - php-mysql
+        - php-imagick
+        - tree
+        - less
+      state: latest
+      update_cache: yes
+  - name: create users
+    user:
+      name: "{{ item }}"
+      password: "{{ (item+'_pass') | password_hash('sha512', 'mysecretsalt') }}"
+      shell: /bin/bash
+      groups:
+        - www-data
+        - adm
+      append: yes
+    loop: "{{ students }}"
+  - name: enable port 20513
+    lineinfile:
+      path: /etc/apache2/ports.conf
+      line: "Listen 20513"
+    notify:
+      - restart apache2
+  - name: copy vhost
+    template:
+      src: vhost.conf
+      dest: "/etc/apache2/sites-enabled/students.conf"
+    notify:
+      - restart apache2
+  - name: create document root
+    file:
+      state: directory
+      path: "/var/www/html/{{ item }}"
+      owner: "{{ item }}"
+      group: www-data
+      mode: '6775'
+    loop: "{{ students }}"
+
+  handlers:
+    - name: restart apache2
+      service:
+        name: apache2
+        state: restarted
+

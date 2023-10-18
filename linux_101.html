@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Marcin Fabrykowski">
+  <title>Wprowadzenie do systemu GNU/Linux</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reset.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/theme/black.css" id="theme">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Wprowadzenie do systemu GNU/Linux</h1>
+  <p class="author">Marcin Fabrykowski</p>
+  <p class="date"><img data-src="img/logo.png" data-heigth="50px" />
+<img data-src="img/akamai-logo.png" data-heigth="50px" /></p>
+</section>
+
+<section id="czym-jest-system-operacyjny" class="slide level2">
+<h2>Czym jest system operacyjny?</h2>
+<ul>
+<li class="fragment"><p>To program, który zarządza zasobami
+komputera.</p></li>
+<li class="fragment"><p>Zapewnia warstwę abstrakcji pomiędzy sprzętem a
+programami użytkownika.</p></li>
+<li class="fragment"><p>Pozwala na uruchamianie innych
+programów.</p></li>
+</ul>
+</section>
+<section id="architektura" class="slide level2">
+<h2>Architektura</h2>
+<p><img data-src="img/systemstructure.png" /></p>
+</section>
+<section id="jak-wygląda-os" class="slide level2"
+data-transition="none-out">
+<h2 data-transition="none-out">Jak wygląda OS?</h2>
+<p>Windows</p>
+<p><img data-src="img/os_windows1.png" style="width:85.0%" /></p>
+</section>
+<section id="jak-wygląda-os-1" class="slide level2"
+data-transition="none">
+<h2 data-transition="none">Jak wygląda OS?</h2>
+<p>Linux</p>
+<p><img data-src="img/os_linux1.png" /></p>
+</section>
+<section id="jak-wygląda-os-2" class="slide level2"
+data-transition="none">
+<h2 data-transition="none">Jak wygląda OS?</h2>
+<p>Linux</p>
+<p><img data-src="img/os_linux2.png" style="width:80.0%" /></p>
+</section>
+<section id="jak-wygląda-os-3" class="slide level2"
+data-transition="none slide-out">
+<h2 data-transition="none slide-out">Jak wygląda OS?</h2>
+<p>Linux</p>
+<p><img data-src="img/os_linux3.gif" style="width:80.0%" /></p>
+</section>
+<section id="po-co-mi-linux" class="slide level2">
+<h2>Po co mi Linux?</h2>
+<ul>
+<li class="fragment">Po prostu desktop</li>
+<li class="fragment">Administracja serwerami</li>
+<li class="fragment">Programowanie (kontenery)</li>
+<li class="fragment">Raspberry Pi</li>
+</ul>
+</section>
+<section id="dlaczego-linux" class="slide level2"
+data-transition="none-out">
+<h2 data-transition="none-out">Dlaczego Linux?</h2>
+<ul>
+<li class="fragment"><p>Otwartość kodu źródłowego</p></li>
+<li class="fragment"><p>Darmowość</p></li>
+<li class="fragment"><p>Bezpieczeństwo</p></li>
+<li class="fragment"><p>Stabilność</p></li>
+<li class="fragment"><p>Konfigurowalność</p></li>
+<li class="fragment"><p>Zasobożerność (a raczej jej brak)</p></li>
+</ul>
+<aside class="notes">
+<p>goły system ok 70 MB RAM. z httpd i mysql ok 150 MB RAM</p>
+</aside>
+</section>
+<section id="plan-warsztatów" class="slide level2">
+<h2>Plan warsztatów</h2>
+<div>
+<ul>
+<li>łączenie się z serwerem</li>
+<li>konfiguracja strony WWW</li>
+<li>bazując na otrzymanym efekcie, zrozumienie podstawowych operacji na
+systemie, czyli:
+<ul>
+<li>poruszanie się po systemie</li>
+<li>operacje na plikach i katalogach</li>
+</ul></li>
+<li>obsługa edytora vim</li>
+<li>podstawy wyrażeń regularnych</li>
+<li>konfiguracja bloga opartego o Wordpress</li>
+</ul>
+</div>
+</section>
+<section id="konwencje-w-prezentacji" class="slide level2">
+<h2>Konwencje w prezentacji</h2>
+<ul>
+<li class="fragment"><code>polecenie</code> - polecenie, które należy
+wpisać w terminalu</li>
+<li class="fragment"><code>&lt;nazwa&gt;</code> - zmienna, którą należy
+zastąpić odpowiednią wartością (bez znaków <code>&lt;</code> i
+<code>&gt;</code>)</li>
+<li class="fragment"><code>cd &lt;userX&gt;</code> ==
+<code>cd user40</code> (dla <code>user40</code>)</li>
+</ul>
+</section>
+<section id="łączenie-się-z-serwerem" class="slide level2">
+<h2>łączenie się z serwerem</h2>
+<ul>
+<li class="fragment">Ściągnij program PuTTY (https://putty.org/)</li>
+<li class="fragment">Wpisz adres:
+<code>ssh.warsztaty.linux.org.pl</code></li>
+<li class="fragment">Wpisz login: <code>&lt;userX&gt;</code> (np.
+<code>user40</code>)</li>
+<li class="fragment">Wpisz hasło: <code>&lt;userX&gt;_pass</code> (np:
+<code>user40_pass</code>; hasło nie będzie wyświetlane)</li>
+<li class="fragment">Już :)</li>
+</ul>
+</section>
+<section id="prompt" class="slide level2">
+<h2>Prompt</h2>
+<pre><code>user3@warsztaty:~$</code></pre>
+<ul>
+<li class="fragment"><code>user3</code> - nazwa użytkownika</li>
+<li class="fragment"><code>@</code> - at</li>
+<li class="fragment"><code>warsztaty</code> - nazwa hosta</li>
+<li class="fragment"><code>~</code> - bieżący katalog</li>
+<li class="fragment"><code>$</code> - zwykły użytkownik</li>
+<li class="fragment"><code>#</code> - administrator</li>
+</ul>
+</section>
+<section id="składnia-poleceń" class="slide level2">
+<h2>Składnia poleceń</h2>
+<ul>
+<li class="fragment"><code>polecenie [opcje] [argumenty]</code></li>
+<li class="fragment"><code>ls -l /etc</code></li>
+</ul>
+</section>
+<section id="konfiguracja-strony-www" class="slide level2">
+<h2>konfiguracja strony WWW</h2>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode numberSource numberLines"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>cd /var/www/html/&lt;userX&gt;</span>
+<span id="cb2-2"><a href="#cb2-2"></a>cp /var/www/html/user0/v2/strona.tar.gz ./</span>
+<span id="cb2-3"><a href="#cb2-3"></a>tar -xzf strona.tar.gz</span></code></pre></div>
+<p>np:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode numberSource numberLines"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>cd /var/www/html/user40</span>
+<span id="cb3-2"><a href="#cb3-2"></a>cp /var/www/html/user0/v2/strona.tar.gz ./</span>
+<span id="cb3-3"><a href="#cb3-3"></a>tar -xzf strona.tar.gz</span></code></pre></div>
+<p>http://&lt;userX&gt;.warsztaty.linux.org.pl/strona/</p>
+</section>
+<section id="struktura-systemu-plików" class="slide level2">
+<h2>Struktura systemu plików</h2>
+<pre><code>/
+├── run
+│   ├── agetty.reload
+│   ├── apache2
+│   │   └── apache2.pid
+│   ├── console-setup
+│   │   └── boot_completed
+├── etc
+│   ├── aliases
+│   ├── alternatives
+│   │   └── aclocal -&gt; /usr/bin/aclocal-1.16</code></pre>
+<ul>
+<li class="fragment">system plików jest drzewem</li>
+<li class="fragment"><code>/</code> - katalog główny</li>
+<li class="fragment">wszystkie katalogi są podkatalogami katalogu
+<code>/</code></li>
+</ul>
+</section>
+<section id="struktura-systemu-plików-1" class="slide level2">
+<h2>Struktura systemu plików</h2>
+<p>Przykładowe ścieżki do plików i katalogów</p>
+<pre><code># katalogi
+/etc/
+/home/
+/home/user1/
+
+# pliki
+/etc/passwd
+/var/www/html/user1/strona/index.html
+/home/user1/strona/index.html
+/home/user1/strona/assets/images/show-event-02.jpg</code></pre>
+</section>
+<section id="ścieżki-do-plików-i-katalogów" class="slide level2">
+<h2>Ścieżki do plików i katalogów</h2>
+<ul>
+<li class="fragment">ścieżki mogą być względne i bezwzględne</li>
+<li class="fragment">ścieżka względna wskazuje na plik lub katalog
+względem bieżącego katalogu</li>
+<li class="fragment">ścieżka bezwzględna wskazuje na plik lub katalog
+względem katalogu głównego</li>
+</ul>
+</section>
+<section id="ścieżki-do-plików-i-katalogów-1" class="slide level2">
+<h2>Ścieżki do plików i katalogów</h2>
+<p>Będąc w katalogu<br />
+<code>/home/user1/</code><br />
+ścieżka do pliku <code>index.html</code> to:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li class="fragment"><p>ścieżka względna:</p>
+<pre><code>index.html</code></pre></li>
+<li class="fragment"><p>ścieżka bezwzględna:</p>
+<pre><code>/home/user1/index.html</code></pre></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<pre><code>home/
+├── user1 &lt;==
+│   └── index.html
+└── user2
+    └── notatki.txt</code></pre>
+</div>
+</div>
+</section>
+<section id="ścieżki-do-plików-i-katalogów-2" class="slide level2">
+<h2>Ścieżki do plików i katalogów</h2>
+<p>Natomiast będąc w katalogu<br />
+<code>/home/user2/</code><br />
+ścieżka do tego samego pliku <code>index.html</code> to:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li class="fragment"><p>ścieżka względna:</p>
+<pre><code>../user1/index.html</code></pre></li>
+<li class="fragment"><p>ścieżka bezwzględna:</p>
+<pre><code>/home/user1/index.html</code></pre></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<pre><code>home/
+├── user1
+│   └── index.html
+└── user2 &lt;==
+    └── notatki.txt</code></pre>
+</div>
+</div>
+</section>
+<section id="poruszanie-się-po-systemie" class="slide level2">
+<h2>Poruszanie się po systemie</h2>
+<ul>
+<li class="fragment"><code>pwd</code> - wyświetla ścieżkę do bieżącego
+katalogu</li>
+<li class="fragment"><code>ls</code> - wyświetla zawartość katalogu</li>
+<li class="fragment"><code>cd &lt;katalog&gt;</code> - zmienia bieżący
+katalog</li>
+<li class="fragment"><code>mkdir</code> - tworzy katalog</li>
+<li class="fragment"><code>rmdir</code> - usuwa katalog</li>
+<li class="fragment"><code>tree</code> - wyświetla strukturę
+katalogów</li>
+</ul>
+</section>
+<section id="najważniejsze-katalogi" class="slide level2">
+<h2>najważniejsze katalogi</h2>
+<div>
+<ul>
+<li><code>/</code> - katalog główny</li>
+<li><code>/etc</code> - konfiguracja systemu</li>
+<li><code>/bin</code>, <code>/sbin</code> - programy systemowe</li>
+<li><code>/usr</code> - programy użytkowe</li>
+<li><code>/home</code> - katalogi użytkowników</li>
+<li><code>/tmp</code> - dane tymczasowe</li>
+<li><code>.</code> - bieżący katalog</li>
+<li><code>..</code> - katalog nadrzędny</li>
+</ul>
+</div>
+</section>
+<section id="zadanie-1---przejście-do-katalogu-ze-stroną-www"
+class="slide level2">
+<h2>Zadanie 1 - przejście do katalogu ze stroną WWW</h2>
+<div>
+<ul>
+<li><p>stronę WWW umieściliśmy w katalogu:</p>
+<pre><code>/var/www/html/&lt;userX&gt;/strona</code></pre></li>
+<li><p>przejdź do katalogu ze stroną WWW</p></li>
+<li><p>wypisz aktualną ścieżkę</p></li>
+<li><p>wyświetl zawartość katalogu</p></li>
+</ul>
+</div>
+</section>
+<section id="zadanie-1---przejście-do-katalogu-ze-stroną-www-1"
+class="slide level2">
+<h2>Zadanie 1 - przejście do katalogu ze stroną WWW</h2>
+<div>
+<ul>
+<li><p>stronę WWW umieściliśmy w katalogu:</p>
+<pre><code>/var/www/html/&lt;userX&gt;/strona</code></pre></li>
+<li><p>przejście do katalogu ze stroną WWW:</p>
+<pre><code>cd /var/www/html/&lt;userX&gt;/strona</code></pre></li>
+<li><p>wypisanie aktualnej ścieżki:</p>
+<pre><code>pwd</code></pre></li>
+<li><p>wyświetlenie zawartości katalogu:</p>
+<pre><code>ls</code></pre></li>
+</ul>
+</div>
+</section>
+<section id="operacje-na-plikach-i-katalogach" class="slide level2">
+<h2>Operacje na plikach i katalogach</h2>
+<ul>
+<li class="fragment"><code>cat</code> - wyświetla zawartość pliku</li>
+<li class="fragment"><code>less</code> - wyświetla zawartość pliku (po
+stronach)</li>
+<li class="fragment"><code>head</code> - wyświetla początkowe linie
+pliku</li>
+<li class="fragment"><code>tail</code> - wyświetla końcowe linie
+pliku</li>
+<li class="fragment"><code>cp</code> - kopiowanie plików</li>
+<li class="fragment"><code>mv</code> - przenoszenie i zmiana nazwy
+plików</li>
+<li class="fragment"><code>rm</code> - usuwanie plików</li>
+</ul>
+</section>
+<section id="operacje-na-plikach-i-katalogach-1" class="slide level2">
+<h2>Operacje na plikach i katalogach</h2>
+<ul>
+<li class="fragment"><code>cat</code> (bez argumentów) - wyświetla na
+ekranie dane z wejścia standardowego<br />
+(ctrl+d lub ctrl+c aby zakończyć)</li>
+<li class="fragment"><code>cat &lt;plik&gt;</code> - wyświetla zawartość
+pliku</li>
+<li class="fragment"><code>tail &lt;plik&gt;</code> - wyświetla końcowe
+linie pliku</li>
+<li class="fragment"><code>tail -n &lt;liczba&gt; &lt;plik&gt;</code> -
+wyświetla ostatnie <code>&lt;liczba&gt;</code> linii pliku</li>
+<li class="fragment"><code>tail -F &lt;plik&gt;</code> - wyświetla
+końcowe linie pliku i śledzi zmiany (ctrl+c aby zakończyć)</li>
+</ul>
+</section>
+<section id="operacje-na-plikach-i-katalogach-2" class="slide level2">
+<h2>Operacje na plikach i katalogach</h2>
+<ul>
+<li class="fragment"><code>cp &lt;plik1&gt; &lt;plik2&gt;</code> -
+kopiuje plik1 do pliku2</li>
+<li class="fragment"><code>cp &lt;plik1&gt; &lt;katalog&gt;</code> -
+kopiuje plik1 do katalogu</li>
+<li class="fragment"><code>mv &lt;plik1&gt; &lt;plik2&gt;</code> -
+zmienia nazwę pliku1 na plik2</li>
+<li class="fragment"><code>mv &lt;plik1&gt; &lt;katalog&gt;</code> -
+przenosi plik1 do katalogu</li>
+</ul>
+</section>
+<section id="zadanie-2a---przeglądanie-logów-serwera-www"
+class="slide level2">
+<h2>Zadanie 2a - przeglądanie logów serwera WWW</h2>
+<div>
+<ul>
+<li><p>logi serwera WWW znajdują się w katalogu:</p>
+<pre><code>/var/log/apache2</code></pre></li>
+<li><p>plik z logami serwera WWW:</p>
+<pre><code>/var/log/apache2/&lt;userX&gt;_access.log</code></pre></li>
+<li><p>przejdź do katalogu z logami</p></li>
+<li><p>wyświetl zawartość pliku
+<code>&lt;userX&gt;_access.log</code></p></li>
+</ul>
+</div>
+</section>
+<section id="zadanie-2a---przeglądanie-logów-serwera-www-1"
+class="slide level2">
+<h2>Zadanie 2a - przeglądanie logów serwera WWW</h2>
+<div>
+<ul>
+<li><p>przejdź do katalogu z logami</p>
+<pre><code>cd /var/log/apache2</code></pre></li>
+<li><p>wyświetl zawartość pliku
+<code>&lt;userX&gt;_access.log</code></p>
+<pre><code>cat &lt;userX&gt;_access.log</code></pre></li>
+</ul>
+</div>
+</section>
+<section id="zadananie-2b---przeglądanie-logów-serwera-www"
+class="slide level2">
+<h2>Zadananie 2b - przeglądanie logów serwera WWW</h2>
+<div>
+<ul>
+<li>wyświetl 5 ostatnich linii pliku logów:<br />
+</li>
+<li>wyświetlaj nowe linie pliku access.log:<br />
+</li>
+<li>znajdź linie z kodem 404</li>
+</ul>
+</div>
+</section>
+<section id="zadanie-2b---przeglądanie-logów-serwera-www"
+class="slide level2">
+<h2>Zadanie 2b - przeglądanie logów serwera WWW</h2>
+<div>
+<ul>
+<li><p>wyświetl 5 ostatnich linii pliku logów:</p>
+<pre><code>tail -n 5 &lt;userX&gt;_access.log</code></pre></li>
+<li><p>wyświetlaj nowe linie pliku access.log:</p>
+<pre><code>tail -F &lt;userX&gt;_access.log</code></pre></li>
+<li><p>znajdź linie z kodem 404, np:</p>
+<pre><code>31.179.32.96 - - [18/Oct/2023:17:57:06 +0000] &quot;GET /strona/assets/images/show-events-02.jgp HTTP/1.1&quot; 404 506 &quot;http://user4.warsztaty.linux.org.pl/strona/&quot; &quot;Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/118.0&quot;</code></pre></li>
+</ul>
+</div>
+</section>
+<section id="zadanie-3---poprawienie-brakującego-obrazka"
+class="slide level2">
+<h2>Zadanie 3 - poprawienie brakującego obrazka</h2>
+<div>
+<ul>
+<li>na stronie głównej brakuje obrazka</li>
+<li>przejdź do katalogu z brakującym plikiem</li>
+<li>wylistuj pliki w tym katologu</li>
+<li>zmień nazwę pliku z rozszerzeniem .jgp na .jpg</li>
+<li>sprawdź, czy obrazek się wyświetla</li>
+</ul>
+</div>
+</section>
+<section id="zadanie-3---poprawienie-brakującego-obrazka-1"
+class="slide level2">
+<h2>Zadanie 3 - poprawienie brakującego obrazka</h2>
+<div>
+<ul>
+<li><p>przejdź do katalogu z brakującym plikiem</p>
+<pre><code>cd /var/www/html/&lt;login&gt;/strona/assets/images</code></pre></li>
+<li><p>wylistuj pliki w tym katologu</p>
+<pre><code>ls</code></pre></li>
+<li><p>zmień nazwę pliku z rozszerzeniem .jgp na .jpg</p>
+<pre><code>mv show-events-02.jgp show-events-02.jpg</code></pre></li>
+</ul>
+</div>
+</section>
+<section id="obsługa-edytora-vim" class="slide level2"
+data-transition="none-out">
+<h2 data-transition="none-out">Obsługa edytora vim</h2>
+<ul>
+<li class="fragment">vim jest edytorem modalnym, czyli ma kilka trybów
+pracy, m.in.:
+<ul>
+<li class="fragment">tryb normalny</li>
+<li class="fragment">tryb wstawiania</li>
+</ul></li>
+</ul>
+</section>
+<section id="obsługa-edytora-vim-1" class="slide level2"
+data-transition="none">
+<h2 data-transition="none">Obsługa edytora vim</h2>
+<ul>
+<li class="fragment">tryb normalny - służy do nawigacji po pliku i
+wykonywania poleceń</li>
+<li class="fragment">nawigować można za pomocą klawiszy <code>h</code>,
+<code>j</code>, <code>k</code>, <code>l</code> lub strzałek</li>
+<li class="fragment">przejście do trybu wstawiania: <code>i</code>…</li>
+<li class="fragment">…jak również na kilkanaście innych sposobów</li>
+<li class="fragment">wyjście z trybu wstawiania: <code>ESC</code></li>
+</ul>
+</section>
+<section id="obsługa-edytora-vim-2" class="slide level2"
+data-transition="none">
+<h2 data-transition="none">Obsługa edytora vim</h2>
+<ul>
+<li class="fragment">szukanie tekstu: <code>/tekst</code></li>
+<li class="fragment">zapisanie pliku: <code>:w</code></li>
+<li class="fragment">wyjście z vim-a: <code>:q</code></li>
+<li class="fragment">zapisanie i wyjście z vim-a: <code>:wq</code></li>
+</ul>
+</section>
+<section id="obsługa-edytora-vim-3" class="slide level2"
+data-transition="none">
+<h2 data-transition="none">Obsługa edytora vim</h2>
+<ul>
+<li class="fragment">kopiowanie i wklejanie tekstu:
+<ul>
+<li class="fragment"><code>yy</code> - kopiowanie linii</li>
+<li class="fragment"><code>p</code> - wklejanie</li>
+</ul></li>
+<li class="fragment">usuwanie tekstu:
+<ul>
+<li class="fragment"><code>dd</code> - usuwanie linii</li>
+<li class="fragment"><code>x</code> - usuwanie znaku</li>
+</ul></li>
+<li class="fragment">cofanie i ponawianie zmian:
+<ul>
+<li class="fragment"><code>u</code> - cofanie</li>
+<li class="fragment"><code>CTRL+r</code> - ponawianie</li>
+</ul></li>
+</ul>
+</section>
+<section id="obsługa-edytora-vim-extra" class="slide level2"
+data-transition="none-in">
+<h2 data-transition="none-in">Obsługa edytora vim (extra)</h2>
+<ul>
+<li class="fragment">wejście do trybu wstawiania:
+<ul>
+<li class="fragment">przed kursorem: <code>i</code></li>
+<li class="fragment">za kursorem: <code>a</code></li>
+<li class="fragment">na początku linii: <code>I</code></li>
+<li class="fragment">na końcu linii: <code>A</code></li>
+<li class="fragment">linijka poniżej: <code>o</code></li>
+<li class="fragment">linijka powyżej: <code>O</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="zadanie-4---poprawienie-linku-do-strony-about-us"
+class="slide level2">
+<h2>Zadanie 4 - poprawienie linku do strony about us</h2>
+<div>
+<ul>
+<li>spróbuj otworzyć stronę <code>About Us</code></li>
+<li>otwórz plik index.html w edytorze vim</li>
+<li>znajdź link do strony <code>About Us</code></li>
+<li>popraw literówkę w linku</li>
+<li>zapisz i sprawdź efekt w przeglądarce</li>
+<li>wyjdź z vim-a</li>
+</ul>
+</div>
+</section>
+<section id="zadanie-4---poprawienie-linku-do-strony-about-us-1"
+class="slide level2">
+<h2>Zadanie 4 - poprawienie linku do strony about us</h2>
+<div>
+<ul>
+<li>znajdź link do strony <code>About Us</code>:<br />
+<code>/About Us</code></li>
+<li>przejdź do trybu wstawiania: <code>i</code></li>
+<li>popraw link</li>
+<li>wyjdź z trybu wstawiania: <code>ESC</code></li>
+<li>zapisz: <code>:w</code></li>
+<li>wyjdź z vim-a: <code>:q</code></li>
+</ul>
+</div>
+</section>
+<section id="grep-i-wyrażenia-regularne" class="slide level2">
+<h2>Grep i wyrażenia regularne</h2>
+<ul>
+<li class="fragment">grep - pozwala wyszukiwać wzorce w tekście</li>
+<li class="fragment">wykorzystywane jest to np:
+<ul>
+<li class="fragment">do przeglądania logów</li>
+<li class="fragment">do przeszukiwania plików</li>
+<li class="fragment">do filtrowania wyników innych poleceń</li>
+</ul></li>
+</ul>
+</section>
+<section id="grep-i-wyrażenia-regularne-1" class="slide level2">
+<h2>Grep i wyrażenia regularne</h2>
+<ul>
+<li class="fragment"><code>grep &lt;wzorzec&gt;</code> - wyszukuje
+wzorzec w wejściu standardowym</li>
+<li class="fragment"><code>grep &lt;wzorzec&gt; &lt;plik&gt;</code> -
+wyszukuje wzorzec w pliku</li>
+</ul>
+</section>
+<section id="bardzo-podstawowe-wyrażenia-regularne"
+class="slide level2">
+<h2>(bardzo) podstawowe wyrażenia regularne</h2>
+<ul>
+<li class="fragment"><code>.</code> - dowolny znak</li>
+<li class="fragment"><code>*</code> - dowolna liczba poprzedzającego
+znaku</li>
+<li class="fragment"><code>.*</code> - dowolna liczba dowolnych
+znaków</li>
+<li class="fragment"><code>^</code> - początek linii</li>
+<li class="fragment"><code>$</code> - koniec linii</li>
+<li class="fragment"><code>[a-z],[abc],[0-9]</code> - dowolny znak z
+podanego zakresu</li>
+</ul>
+</section>
+<section id="zadanie-5a---grep-i-wyrażenia-regularne"
+class="slide level2">
+<h2>Zadanie 5a - grep i wyrażenia regularne</h2>
+<div>
+<ul>
+<li><p>filtrowanie danych na standardowym wejściu</p>
+<pre><code>grep &quot;Marcin&quot;</code></pre></li>
+<li><p>wpisujemy losowe imiona, np:</p>
+<pre><code>Kasia
+Zosia
+Marcin
+Maciek</code></pre></li>
+<li><p>zakończ: <code>CTRL+c</code></p></li>
+</ul>
+</div>
+</section>
+<section id="zadanie-5b---przeszukiwanie-listy-użytkowników"
+class="slide level2">
+<h2>Zadanie 5b - przeszukiwanie listy użytkowników</h2>
+<div>
+<ul>
+<li><p>wyświetl wszystkich użytkowników z loginami ‘user’:</p>
+<pre><code>grep &quot;user&quot; /etc/passwd</code></pre></li>
+<li><p>wyświetl użytkowników z jednocyfrowymi parzystymi numerami:</p>
+<pre><code>grep &quot;^user[02468]:&quot; /etc/passwd</code></pre></li>
+<li><p>wyświetl loginy zaczynające się na ‘user’:</p>
+<pre><code>grep &quot;^user&quot; /etc/passwd</code></pre></li>
+</ul>
+</div>
+</section>
+<section id="standardowe-wejście---klawiatura-potok-plik"
+class="slide level2">
+<h2>Standardowe wejście - klawiatura, potok, plik</h2>
+<ul>
+<li class="fragment">standardowe wejście - ujednolicone źródło danych
+dla programów</li>
+<li class="fragment">domyślnie jest to klawiatura</li>
+<li class="fragment">można przekierować standardowe wejście na plik</li>
+<li class="fragment">można przekierować standardowe wejście z jednego
+programu na standardowe wejście innego programu</li>
+<li class="fragment">przekierowanie między programami nazywa się
+potokiem</li>
+<li class="fragment">potok tworzy się za pomocą znaku
+<code>|</code></li>
+</ul>
+</section>
+<section id="zadanie-5c---przeglądanie-logów-serwera-www"
+class="slide level2">
+<h2>Zadanie 5c - przeglądanie logów serwera WWW</h2>
+<div>
+<ul>
+<li><p>wyświetl linie z logu, które zwracają kod 404:</p>
+<pre><code>cat /var/log/apache2/&lt;userX&gt;_access.log | grep &quot; 404 &quot;</code></pre></li>
+<li><p>wyświetl nowe linie z logu, które zwracają pliki z rozszerzeniem
+.jpg:</p>
+<pre><code>tail -F /var/log/apache2/&lt;login&gt;_access.log | grep &quot;\.jpg&quot;</code></pre></li>
+</ul>
+</div>
+</section>
+<section id="uprawnienia-do-plików-i-katalogów" class="slide level2">
+<h2>Uprawnienia do plików i katalogów</h2>
+<ul>
+<li class="fragment">każdy plik i katalog ma właściciela i grupę</li>
+<li class="fragment">każdy plik i katalog ma zestaw uprawnień, które
+dzieją się na 3 grupy</li>
+<li class="fragment">uprawnienia można zmieniać za pomocą polecenia
+<code>chmod</code></li>
+<li class="fragment">uprawnienia można sprawdzać np za pomocą polecenia
+<code>ls -l</code></li>
+</ul>
+</section>
+<section id="uprawnienia-do-plików-i-katalogów-1" class="slide level2">
+<h2>Uprawnienia do plików i katalogów</h2>
+<ul>
+<li class="fragment">uprawnienia dzielą się na:
+<ul>
+<li class="fragment">uprawnienia właściciela (u)</li>
+<li class="fragment">uprawnienia grupy (g)</li>
+<li class="fragment">uprawnienia innych (o)</li>
+</ul></li>
+<li class="fragment">typy uprawnień:
+<ul>
+<li class="fragment">odczyt (read)</li>
+<li class="fragment">zapis (write)</li>
+<li class="fragment">wykonanie (execute)</li>
+</ul></li>
+</ul>
+</section>
+<section id="uprawnienia-do-plików-i-katalogów-2" class="slide level2">
+<h2>Uprawnienia do plików i katalogów</h2>
+<ul>
+<li class="fragment">przykład:<br />
+<code>-rw-r--r-- index.html</code></li>
+<li class="fragment">zmiana uprawnień:<br />
+<code>chmod u+x index.html</code></li>
+<li class="fragment"><code>-rwxr--r-- index.html</code></li>
+</ul>
+</section>
+<section id="uprawnienia-do-plików-i-katalogów-3" class="slide level2">
+<h2>Uprawnienia do plików i katalogów</h2>
+<ul>
+<li class="fragment">przykład:<br />
+<code>-rw-r--r-- index.html</code></li>
+<li class="fragment">zmiana uprawnień:<br />
+<code>chmod 640 index.html</code></li>
+<li class="fragment"><code>-rw-r----- index.html</code></li>
+<li class="fragment">640 jest w systemie ósemkowym</li>
+<li class="fragment">640 = 110 100 000 = <code>rw- r-- ---</code></li>
+</ul>
+</section>
+<section id="zadanie-6---poprawienie-uprawnień-do-plików"
+class="slide level2">
+<h2>Zadanie 6 - poprawienie uprawnień do plików</h2>
+<div>
+<ul>
+<li>spróbuj przejść do strony <code>Ticket Details</code></li>
+<li>sprawdź komunikat błędu w logach
+(<code>&lt;userX&gt;_error.log</code>)</li>
+<li>dodaj uprawnienia do odczytu dla odpowiedniego pliku</li>
+<li>serwer WWW działa w grupie <code>www-data</code></li>
+</ul>
+</div>
+</section>
+<section id="zadanie-6---poprawienie-uprawnień-do-plików-1"
+class="slide level2">
+<h2>Zadanie 6 - poprawienie uprawnień do plików</h2>
+<div>
+<ul>
+<li><p>zlokalizowanie pliku z niepoprawnymi uprawnieniami:</p>
+<pre><code>cat /var/log/apache2/&lt;userX&gt;_error.log</code></pre></li>
+<li><p>sprawdź uprawnienia do pliku:</p>
+<pre><code>ls -l ticket-details.html</code></pre></li>
+<li><p>popraw uprawnienia do pliku:</p>
+<pre><code>chmod g+r ticket-details.html</code></pre></li>
+</ul>
+</div>
+</section>
+<section id="przydatne-polecenia-przy-instalacji-aplikacji"
+class="slide level2">
+<h2>Przydatne polecenia przy instalacji aplikacji</h2>
+<ul>
+<li class="fragment"><code>wget &lt;url&gt;</code> - program do
+pobierania plików z internetu</li>
+<li class="fragment"><code>tar</code> - program do archiwizacji
+plików</li>
+<li class="fragment"><code>tar -xzf &lt;archiwum&gt;</code> -
+rozpakowuje archiwum tar.gz</li>
+</ul>
+</section>
+<section id="zadanie-7---instalacja-bloga-wordpress"
+class="slide level2">
+<h2>Zadanie 7 - instalacja bloga Wordpress</h2>
+<div>
+<ul>
+<li><p>przejdź do katalogu ze stroną WWW:</p>
+<pre><code>cd /var/www/html/&lt;userX&gt;</code></pre></li>
+<li><p>pobierz bloga Wordpress:</p>
+<pre><code>wget https://wordpress.org/latest.tar.gz</code></pre></li>
+<li><p>rozpakuj archiwum:</p>
+<pre><code>tar -xzf latest.tar.gz</code></pre>
+<p>http://&lt;userX&gt;.warsztaty.linux.org.pl/wordpress/</p></li>
+</ul>
+</div>
+</section>
+<section id="zadanie-7---instalacja-bloga-wordpress-1"
+class="slide level2">
+<h2>Zadanie 7 - instalacja bloga Wordpress</h2>
+<div>
+<ul>
+<li><p>dane konfiguracyjne do bazy danych znajdują się w pliku
+<code>/tmp/baza.txt</code></p></li>
+<li><p>po podaniu danych, otrzymamy komunikat, że Wordpress nie może
+zapisać pliku konfiguracyjnego.</p></li>
+<li><p>dodać uprawnienia do zapisu dla katalogu Wordpress:</p>
+<pre><code>chmod g+w wordpress</code></pre></li>
+<li><p>odświeżyć stronę i kontynuować instalację</p></li>
+</ul>
+</div>
+</section>
+<section id="uruchamianie-programów" class="slide level2">
+<h2>Uruchamianie programów</h2>
+<ul>
+<li class="fragment"><p>programy uruchamiany podając ich ścieżkę i
+nazwę</p></li>
+<li class="fragment"><p>ścieżka może być względna lub
+bezwzględna</p></li>
+<li class="fragment"><p>ścieżkę można pominąć, jeśli program znajduje
+się w katalogu, który jest w zmiennej środowiskowej PATH</p></li>
+<li class="fragment"><p>chcąc uruchomić program z bieżącego katalogu,
+można podać ścieżkę względną:</p>
+<pre><code>./program</code></pre></li>
+</ul>
+</section>
+<section id="zadanie-7---uruchomienie-programu" class="slide level2">
+<h2>Zadanie 7 - uruchomienie programu</h2>
+<div>
+<ul>
+<li><p>skopiuj program do katalogu domowego</p></li>
+<li><p>program znajduje się w katalogu:</p>
+<pre><code>/var/www/html/user0/v2/files/guess.py</code></pre></li>
+<li><p>uruchom program</p></li>
+<li><p>popraw uprawnienia do pliku, jeśli będzie taka potrzeba</p></li>
+</ul>
+</div>
+</section>
+<section id="zadanie-7---uruchomienie-programu-1" class="slide level2">
+<h2>Zadanie 7 - uruchomienie programu</h2>
+<div>
+<ul>
+<li><p>przejdź do katalogu domowego:</p>
+<pre><code>cd</code></pre></li>
+<li><p>kopiowanie programu:</p>
+<pre><code>cp /var/www/html/user0/v2/files/guess.py ./</code></pre></li>
+<li><p>uruchomienie programu:</p>
+<pre><code>./guess.py</code></pre></li>
+</ul>
+</div>
+</section>
+<section id="co-dalej" class="slide level2">
+<h2>Co dalej?</h2>
+<ul>
+<li class="fragment"><p>podręcznik manuala:</p>
+<pre><code>man &lt;polecenie&gt;</code></pre>
+<p>np:</p>
+<pre><code>man ls</code></pre></li>
+<li class="fragment"><p>społeczności: Polska Grupa Użytkowników Linuksa
+https://discord.linux.org.pl</p></li>
+<li class="fragment"><p>praktyka, praktyka, praktyka (maszyna wirtualna,
+vps, Raspberry Pi)</p></li>
+</ul>
+</section>
+<section id="pytania" class="slide level2">
+<h2>Pytania?</h2>
+</section>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/reveal.js@^4//dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="https://unpkg.com/reveal.js@^4//plugin/notes/notes.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/search/search.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
