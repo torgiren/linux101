@@ -2,6 +2,18 @@
 % Marcin Fabrykowski
 % ![](img/logo.png){heigth=50px} ![](img/akamai-logo.png){heigth=50px}
 
+## Prezentacja
+
+::: nonincremental
+
+- dostępna pod adresem:  
+  https://torgiren.github.io/linux101
+
+- repozytorium:  
+  https://github.com/torgiren/linux101
+
+:::
+
 ## Czym jest system operacyjny?
 
 - To program, który zarządza zasobami komputera.
