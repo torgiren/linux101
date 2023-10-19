@@ -601,6 +601,10 @@ home/
 - zmiana uprawnień:  
 `chmod u+x index.html`
 - `-rwxr--r-- index.html`
+- `chmod u+r <plik>`  
+  `chmod g+r <plik>`  
+  `chmod o+r <plik>`  
+  `chmod +r <plik>`
 
 ## Uprawnienia do plików i katalogów
 
