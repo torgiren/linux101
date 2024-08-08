@@ -10,6 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reset.css">
   <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reveal.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//plugin/highlight/monokai.css">
   <style>
     .reveal .sourceCode {  /* see #7635 */
       overflow: visible;
@@ -29,70 +30,6 @@
       vertical-align: middle;
     }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { color: #008000; } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { color: #008000; font-weight: bold; } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/theme/black.css" id="theme">
 </head>
@@ -103,23 +40,11 @@
 <section id="title-slide">
   <h1 class="title">Wprowadzenie do systemu GNU/Linux</h1>
   <p class="author">Marcin Fabrykowski</p>
-  <p class="date"><img data-src="img/logo.png" data-heigth="50px" />
-<img data-src="img/akamai-logo.png" data-heigth="50px" /></p>
+  <p class="date"><img data-src="img/logo.png" data-heigth="50px" /></p>
 </section>
 
-<section id="prezentacja" class="slide level2">
-<h2>Prezentacja</h2>
-<div>
-<ul>
-<li><p>dostępna pod adresem:<br />
-https://torgiren.github.io/linux101</p></li>
-<li><p>repozytorium:<br />
-https://github.com/torgiren/linux101</p></li>
-</ul>
-</div>
-</section>
 <section id="czym-jest-system-operacyjny" class="slide level2">
-<h2>Czym jest system operacyjny?</h2>
+<h2>Czym jest system operacyjny???</h2>
 <ul>
 <li class="fragment"><p>To program, który zarządza zasobami
 komputera.</p></li>
@@ -133,29 +58,20 @@ programów.</p></li>
 <h2>Architektura</h2>
 <p><img data-src="img/systemstructure.png" /></p>
 </section>
-<section id="jak-wygląda-os" class="slide level2"
-data-transition="none-out">
-<h2 data-transition="none-out">Jak wygląda OS?</h2>
+<section id="jak-wygląda-os" class="slide level2">
+<h2>Jak wygląda OS?</h2>
 <p>Windows</p>
 <p><img data-src="img/os_windows1.png" style="width:85.0%" /></p>
 </section>
-<section id="jak-wygląda-os-1" class="slide level2"
-data-transition="none">
-<h2 data-transition="none">Jak wygląda OS?</h2>
+<section id="jak-wygląda-os-1" class="slide level2">
+<h2>Jak wygląda OS?</h2>
 <p>Linux</p>
-<p><img data-src="img/os_linux1.png" /></p>
-</section>
-<section id="jak-wygląda-os-2" class="slide level2"
-data-transition="none">
-<h2 data-transition="none">Jak wygląda OS?</h2>
-<p>Linux</p>
-<p><img data-src="img/os_linux2.png" style="width:80.0%" /></p>
-</section>
-<section id="jak-wygląda-os-3" class="slide level2"
-data-transition="none slide-out">
-<h2 data-transition="none slide-out">Jak wygląda OS?</h2>
-<p>Linux</p>
-<p><img data-src="img/os_linux3.gif" style="width:80.0%" /></p>
+<div class="r-stack">
+<img data-src="img/os_linux1.png" class="fragment"
+style="width:80.0%" /> <img data-src="img/os_linux2.png"
+class="fragment" style="width:80.0%" /> <img
+data-src="img/os_linux3.gif" class="fragment" style="width:80.0%" />
+</div>
 </section>
 <section id="po-co-mi-linux" class="slide level2">
 <h2>Po co mi Linux?</h2>
@@ -186,14 +102,12 @@ data-transition="none-out">
 <div>
 <ul>
 <li>łączenie się z serwerem</li>
-<li>konfiguracja strony WWW</li>
-<li>bazując na otrzymanym efekcie, zrozumienie podstawowych operacji na
-systemie, czyli:
-<ul>
 <li>poruszanie się po systemie</li>
+<li>uruchomienie prostej aplikacji</li>
 <li>operacje na plikach i katalogach</li>
-</ul></li>
+<li>instalacja oprogramowania</li>
 <li>obsługa edytora vim</li>
+<li>konfiguracja strony WWW</li>
 <li>podstawy wyrażeń regularnych</li>
 <li>konfiguracja bloga opartego o Wordpress</li>
 </ul>
@@ -207,7 +121,7 @@ wpisać w terminalu</li>
 <li class="fragment"><code>&lt;nazwa&gt;</code> - zmienna, którą należy
 zastąpić odpowiednią wartością (bez znaków <code>&lt;</code> i
 <code>&gt;</code>)</li>
-<li class="fragment"><code>cd &lt;userX&gt;</code> ==
+<li class="fragment"><code>cd &lt;userX&gt;</code> oznacza
 <code>cd user40</code> (dla <code>user40</code>)</li>
 </ul>
 </section>
@@ -226,7 +140,7 @@ zastąpić odpowiednią wartością (bez znaków <code>&lt;</code> i
 </section>
 <section id="prompt" class="slide level2">
 <h2>Prompt</h2>
-<pre><code>user3@warsztaty:~$</code></pre>
+<pre ><code >user3@warsztaty:~$</code></pre>
 <ul>
 <li class="fragment"><code>user3</code> - nazwa użytkownika</li>
 <li class="fragment"><code>@</code> - at</li>
@@ -239,26 +153,14 @@ zastąpić odpowiednią wartością (bez znaków <code>&lt;</code> i
 <section id="składnia-poleceń" class="slide level2">
 <h2>Składnia poleceń</h2>
 <ul>
-<li class="fragment"><code>polecenie [opcje] [argumenty]</code></li>
+<li
+class="fragment"><code>polecenie</code>␣<code>[opcje]</code>␣<code>[argumenty]</code></li>
 <li class="fragment"><code>ls -l /etc</code></li>
 </ul>
 </section>
-<section id="konfiguracja-strony-www" class="slide level2">
-<h2>konfiguracja strony WWW</h2>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode numberSource numberLines"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>cd /var/www/html/&lt;userX&gt;</span>
-<span id="cb2-2"><a href="#cb2-2"></a>cp /var/www/html/user0/v2/strona.tar.gz ./</span>
-<span id="cb2-3"><a href="#cb2-3"></a>tar -xzf strona.tar.gz</span></code></pre></div>
-<p>np:</p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode numberSource numberLines"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>cd /var/www/html/user40</span>
-<span id="cb3-2"><a href="#cb3-2"></a>cp /var/www/html/user0/v2/strona.tar.gz ./</span>
-<span id="cb3-3"><a href="#cb3-3"></a>tar -xzf strona.tar.gz</span></code></pre></div>
-<p>http://&lt;userX&gt;.warsztaty.linux.org.pl/strona/</p>
-</section>
 <section id="struktura-systemu-plików" class="slide level2">
 <h2>Struktura systemu plików</h2>
-<pre><code>/
+<pre ><code class="bash" data-line-numbers="">/
 ├── run
 │   ├── agetty.reload
 │   ├── apache2
@@ -279,7 +181,7 @@ class="sourceCode numberSource numberLines"><code class="sourceCode"><span id="c
 <section id="struktura-systemu-plików-1" class="slide level2">
 <h2>Struktura systemu plików</h2>
 <p>Przykładowe ścieżki do plików i katalogów</p>
-<pre><code># katalogi
+<pre ><code class="bash" data-line-numbers=""># katalogi
 /etc/
 /home/
 /home/user1/
@@ -309,12 +211,12 @@ względem katalogu głównego</li>
 <div class="column" style="width:50%;">
 <ul>
 <li class="fragment"><p>ścieżka względna:</p>
-<pre><code>index.html</code></pre></li>
+<pre ><code class="bash">index.html</code></pre></li>
 <li class="fragment"><p>ścieżka bezwzględna:</p>
-<pre><code>/home/user1/index.html</code></pre></li>
+<pre ><code class="bash">/home/user1/index.html</code></pre></li>
 </ul>
 </div><div class="column" style="width:50%;">
-<pre><code>home/
+<pre ><code class="bash">home/
 ├── user1 &lt;==
 │   └── index.html
 └── user2
@@ -331,13 +233,13 @@ względem katalogu głównego</li>
 <div class="column" style="width:50%;">
 <ul>
 <li class="fragment"><p>ścieżka względna:</p>
-<pre><code>../user1/index.html</code></pre></li>
+<pre ><code class="bash">../user1/index.html</code></pre></li>
 <li class="fragment"><p>ścieżka bezwzględna:</p>
-<pre><code>/home/user1/index.html</code></pre></li>
+<pre ><code class="bash">/home/user1/index.html</code></pre></li>
 </ul>
 </div><div class="column" style="width:50%;">
-<pre><code>home/
-├── user1
+<pre ><code class="bash">home/
+├── user1{.bash}
 │   └── index.html
 └── user2 &lt;==
     └── notatki.txt</code></pre>
@@ -373,32 +275,50 @@ katalogów</li>
 </ul>
 </div>
 </section>
-<section id="zadanie-1---przejście-do-katalogu-ze-stroną-www"
+<section id="zadanie-0---pierwsze-uruchomienie-programu"
 class="slide level2">
-<h2>Zadanie 1 - przejście do katalogu ze stroną WWW</h2>
+<h2>Zadanie 0 - pierwsze uruchomienie programu</h2>
+<p>Pierwszym zadaniem będzie uruchomienie programu
+<code>cmatrix</code>.</p>
 <div>
 <ul>
-<li><p>stronę WWW umieściliśmy w katalogu:</p>
-<pre><code>/var/www/html/&lt;userX&gt;/strona</code></pre></li>
-<li><p>przejdź do katalogu ze stroną WWW</p></li>
-<li><p>wypisz aktualną ścieżkę</p></li>
-<li><p>wyświetl zawartość katalogu</p></li>
+<li><p>aby uruchomić program, wpisz jego nazwę i naciśnij
+<code>Enter</code></p>
+<pre ><code class="bash">cmatrix</code></pre></li>
+<li><p>aby zakończyć program, naciśnij <code>CTRL+c</code></p></li>
 </ul>
 </div>
 </section>
-<section id="zadanie-1---przejście-do-katalogu-ze-stroną-www-1"
-class="slide level2">
-<h2>Zadanie 1 - przejście do katalogu ze stroną WWW</h2>
+<section id="zadanie-0---przekazywanie-parametrów" class="slide level2">
+<h2>Zadanie 0 - przekazywanie parametrów</h2>
 <div>
 <ul>
-<li><p>stronę WWW umieściliśmy w katalogu:</p>
-<pre><code>/var/www/html/&lt;userX&gt;/strona</code></pre></li>
-<li><p>przejście do katalogu ze stroną WWW:</p>
-<pre><code>cd /var/www/html/&lt;userX&gt;/strona</code></pre></li>
-<li><p>wypisanie aktualnej ścieżki:</p>
-<pre><code>pwd</code></pre></li>
-<li><p>wyświetlenie zawartości katalogu:</p>
-<pre><code>ls</code></pre></li>
+<li><p>parametry mogą być bez wartości, np. <code>-r</code></p>
+<pre ><code class="shell">cmatrix -r</code></pre></li>
+<li><p>parametry mogą mieć wartość, np. <code>-C red</code></p>
+<pre ><code class="shell">cmatrix -C red</code></pre></li>
+<li><p>parametry można łączyć</p>
+<pre ><code class="shell">cmatrix -C blue -u 4 -s</code></pre></li>
+</ul>
+</div>
+</section>
+<section id="zadanie-1---uruchomienie-aplikacji" class="slide level2">
+<h2>Zadanie 1 - uruchomienie aplikacji</h2>
+<p>Drugą aplikacją, którą uruchomimy, będzie aplikacja webowa. Aplikacja
+znajduje się w katalogu <code>/opt/flaskapp</code>.</p>
+</section>
+<section id="zadanie-1---uruchomienie-aplikacji-1" class="slide level2">
+<h2>Zadanie 1 - uruchomienie aplikacji</h2>
+<div>
+<ul>
+<li><p>przejdź do katalogu z aplikacją</p>
+<pre ><code class="bash">cd /opt/flaskapp</code></pre></li>
+<li><p>wyświetl zawartość katalogu</p>
+<pre ><code class="bash">ls</code></pre></li>
+<li><p>uruchom aplikację</p>
+<pre ><code class="bash">./app.py</code></pre></li>
+<li><p>przejdź do przeglądarki i otwórz stronę:</p>
+<pre ><code class="shell">https://user&lt;X&gt;.warsztaty.linux.org.pl</code></pre></li>
 </ul>
 </div>
 </section>
@@ -421,9 +341,6 @@ plików</li>
 <section id="operacje-na-plikach-i-katalogach-1" class="slide level2">
 <h2>Operacje na plikach i katalogach</h2>
 <ul>
-<li class="fragment"><code>cat</code> (bez argumentów) - wyświetla na
-ekranie dane z wejścia standardowego<br />
-(ctrl+d lub ctrl+c aby zakończyć)</li>
 <li class="fragment"><code>cat &lt;plik&gt;</code> - wyświetla zawartość
 pliku</li>
 <li class="fragment"><code>tail &lt;plik&gt;</code> - wyświetla końcowe
@@ -447,103 +364,158 @@ zmienia nazwę pliku1 na plik2</li>
 przenosi plik1 do katalogu</li>
 </ul>
 </section>
-<section id="zadanie-2a---przeglądanie-logów-serwera-www"
+<section id="zadanie-2a---wyświetlenie-zawartości-pliku"
 class="slide level2">
-<h2>Zadanie 2a - przeglądanie logów serwera WWW</h2>
+<h2>Zadanie 2a - wyświetlenie zawartości pliku</h2>
+<p>Nasza aplikacja stworzyła plik z bazą danych. Aby go wyświetlić,
+użyjemy polecenia <code>cat</code>.</p>
 <div>
 <ul>
-<li><p>logi serwera WWW znajdują się w katalogu:</p>
-<pre><code>/var/log/apache2</code></pre></li>
-<li><p>plik z logami serwera WWW:</p>
-<pre><code>/var/log/apache2/&lt;userX&gt;_access.log</code></pre></li>
-<li><p>przejdź do katalogu z logami</p></li>
-<li><p>wyświetl zawartość pliku
-<code>&lt;userX&gt;_access.log</code></p></li>
+<li><p>przejdź do katalogu z aplikacją</p>
+<pre ><code class="bash">cd /opt/flaskapp</code></pre></li>
+<li><p>wyświetl zawartość pliku <code>baza.db</code></p>
+<pre ><code class="bash">cat baza.db</code></pre></li>
 </ul>
 </div>
 </section>
-<section id="zadanie-2a---przeglądanie-logów-serwera-www-1"
-class="slide level2">
-<h2>Zadanie 2a - przeglądanie logów serwera WWW</h2>
+<section id="zadanie-2b---kopiowanie-pliku" class="slide level2">
+<h2>Zadanie 2b - kopiowanie pliku</h2>
+<p>Możemy zrobić kopię pliku <code>baza.db</code> i nazwać ją
+<code>baza.db.bak</code>.</p>
 <div>
 <ul>
-<li><p>przejdź do katalogu z logami</p>
-<pre><code>cd /var/log/apache2</code></pre></li>
-<li><p>wyświetl zawartość pliku
-<code>&lt;userX&gt;_access.log</code></p>
-<pre><code>cat &lt;userX&gt;_access.log</code></pre></li>
+<li><p>skopiuj plik <code>baza.db</code> do pliku
+<code>baza.db.bak</code></p>
+<pre ><code class="bash">cp baza.db baza.db.bak</code></pre></li>
+<li><p>wyświetl zawartość katalogu, aby sprawdzić, czy plik został
+skopiowany</p>
+<pre ><code class="bash">ls</code></pre></li>
+<li><p>wyświetl zawartość pliku <code>baza.db.bak</code></p>
+<pre ><code class="bash">cat baza.db.bak</code></pre></li>
 </ul>
 </div>
 </section>
-<section id="zadananie-2b---przeglądanie-logów-serwera-www"
-class="slide level2">
-<h2>Zadananie 2b - przeglądanie logów serwera WWW</h2>
+<section id="zadanie-2b---kopiowanie-pliku-1" class="slide level2">
+<h2>Zadanie 2b - kopiowanie pliku</h2>
+<p>Możemy również przywrócić bazę danych z kopii.</p>
 <div>
 <ul>
-<li>wyświetl 5 ostatnich linii pliku logów:<br />
-</li>
-<li>wyświetlaj nowe linie pliku access.log:<br />
-</li>
-<li>znajdź linie z kodem 404</li>
+<li><p>dodaj nowe dane do aplikacji</p></li>
+<li><p>wyświetl zawartość pliku <code>baza.db</code></p>
+<pre ><code class="bash">cat baza.db</code></pre></li>
+<li><p>przywróć bazę danych z kopii</p>
+<pre ><code class="bash">cp baza.db.bak baza.db</code></pre></li>
+<li><p>wyświetl zawartość pliku <code>baza.db</code></p>
+<pre ><code class="bash">cat baza.db</code></pre></li>
+<li><p>odśwież stronę aplikacji</p></li>
 </ul>
 </div>
 </section>
-<section id="zadanie-2b---przeglądanie-logów-serwera-www"
-class="slide level2">
-<h2>Zadanie 2b - przeglądanie logów serwera WWW</h2>
+<section id="zadanie-2c---zmiana-nazwy-pliku" class="slide level2">
+<h2>Zadanie 2c - zmiana nazwy pliku</h2>
+<p>Możemy zmienić nazwę pliku <code>baza.db.bak</code> na
+<code>baza.db.&lt;data&gt;</code>.</p>
 <div>
 <ul>
-<li><p>wyświetl 5 ostatnich linii pliku logów:</p>
-<pre><code>tail -n 5 &lt;userX&gt;_access.log</code></pre></li>
-<li><p>wyświetlaj nowe linie pliku access.log:</p>
-<pre><code>tail -F &lt;userX&gt;_access.log</code></pre></li>
-<li><p>znajdź linie z kodem 404, np:</p>
-<pre><code>31.179.32.96 - - [18/Oct/2023:17:57:06 +0000] &quot;GET /strona/assets/images/show-events-02.jgp HTTP/1.1&quot; 404 506 &quot;http://user4.warsztaty.linux.org.pl/strona/&quot; &quot;Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/118.0&quot;</code></pre></li>
+<li><p>wyświetl zawartość katalogu, aby sprawdzić, czy plik istnieje</p>
+<pre ><code class="bash">ls</code></pre></li>
+<li><p>zmień nazwę pliku <code>baza.db.bak</code> na
+<code>baza.db.&lt;data&gt;</code></p>
+<pre ><code class="bash">mv baza.db.bak baza.db.20241010`</code></pre></li>
+<li><p>wyświetl zawartość katalogu, aby sprawdzić, czy plik został
+zmieniony</p>
+<pre ><code class="bash">ls</code></pre></li>
 </ul>
 </div>
 </section>
-<section id="zadanie-3---poprawienie-brakującego-obrazka"
-class="slide level2">
-<h2>Zadanie 3 - poprawienie brakującego obrazka</h2>
+<section id="zadanie-2d---usuwanie-pliku" class="slide level2">
+<h2>Zadanie 2d - usuwanie pliku</h2>
+<p>Możemy usunąć plik <code>baza.db.20241010</code>.</p>
 <div>
 <ul>
-<li>na stronie głównej brakuje obrazka</li>
-<li>przejdź do katalogu z brakującym plikiem</li>
-<li>wylistuj pliki w tym katologu</li>
-<li>zmień nazwę pliku z rozszerzeniem .jgp na .jpg</li>
-<li>sprawdź, czy obrazek się wyświetla</li>
+<li><p>wyświetl zawartość katalogu, aby sprawdzić, czy plik istnieje</p>
+<pre ><code class="bash">ls</code></pre></li>
+<li><p>usuń plik <code>baza.db.20241010</code></p>
+<pre ><code class="bash">rm baza.db.20241010</code></pre></li>
+<li><p>wyświetl zawartość katalogu, aby sprawdzić, czy plik został
+usunięty</p>
+<pre ><code class="bash">ls</code></pre></li>
 </ul>
 </div>
 </section>
-<section id="zadanie-3---poprawienie-brakującego-obrazka-1"
-class="slide level2">
-<h2>Zadanie 3 - poprawienie brakującego obrazka</h2>
+<section id="instalacja-oprogramowania" class="slide level2">
+<h2>Instalacja oprogramowania</h2>
+<ul>
+<li class="fragment"><p>Do instalacji oprogramowania w systemie Linux
+służy (przeważnie) menadżer pakietów.</p></li>
+<li class="fragment"><p>W zależności od dystrybucji, mogą to być
+np.:</p>
 <div>
 <ul>
-<li><p>przejdź do katalogu z brakującym plikiem</p>
-<pre><code>cd /var/www/html/&lt;login&gt;/strona/assets/images</code></pre></li>
-<li><p>wylistuj pliki w tym katologu</p>
-<pre><code>ls</code></pre></li>
-<li><p>zmień nazwę pliku z rozszerzeniem .jgp na .jpg</p>
-<pre><code>mv show-events-02.jgp show-events-02.jpg</code></pre></li>
+<li><code>apt</code> - Debian, Ubuntu</li>
+<li><code>dnf</code> - Fedora</li>
+</ul>
+</div></li>
+<li class="fragment"><p>Tylko administrator systemu może instalować
+oprogramowanie.</p></li>
+</ul>
+</section>
+<section id="wykonywanie-poleceń-jako-administrator"
+class="slide level2">
+<h2>Wykonywanie poleceń jako administrator</h2>
+<ul>
+<li class="fragment">Aby wykonać polecenie jako administrator, należy
+dodać przed nim <code>sudo</code>.</li>
+<li class="fragment">składnia:<br />
+<code>sudo &lt;polecenie&gt;</code></li>
+</ul>
+</section>
+<section id="zadanie-3a---wykonywanie-poleceń-jako-administrator"
+class="slide level2">
+<h2>Zadanie 3a - wykonywanie poleceń jako administrator</h2>
+<div>
+<ul>
+<li><p>sprawdzmy nazwę użytkownika</p>
+<pre ><code class="bash">whoami</code></pre></li>
+<li><p>wykonajmy polecenie <code>sudo whoami</code></p>
+<pre ><code class="bash">sudo whoami</code></pre></li>
+<li><p>często spotykane jest przejście do trybu administratora</p>
+<pre ><code class="bash">sudo su -</code></pre></li>
+<li><p>wyjdźmy z trybu administratora</p>
+<pre ><code class="bash">exit</code></pre></li>
 </ul>
 </div>
 </section>
-<section id="obsługa-edytora-vim" class="slide level2"
-data-transition="none-out">
-<h2 data-transition="none-out">Obsługa edytora vim</h2>
+<section id="zadanie-3b---instalacja-programu" class="slide level2">
+<h2>Zadanie 3b - instalacja programu</h2>
+<p>Zainstalujemy edytor tekstu <code>vim</code>.</p>
+<div>
+<ul>
+<li><p>sprawdź czy program <code>vim</code> jest zainstalowany</p>
+<pre ><code class="bash">vim</code></pre></li>
+<li><p>spróbuj zainstalować program <code>vim</code> jako użytkownik</p>
+<pre ><code class="bash">dnf install vim</code></pre></li>
+<li><p>zainstaluj program <code>vim</code> jako administrator</p>
+<pre ><code class="bash">sudo dnf install vim</code></pre></li>
+<li><p>sprawdź czy program <code>vim</code> jest zainstalowany</p>
+<pre ><code class="bash">vim</code></pre></li>
+</ul>
+</div>
+</section>
+<section id="obsługa-edytora-vim" class="slide level2">
+<h2>Obsługa edytora vim</h2>
 <ul>
 <li class="fragment">vim jest edytorem modalnym, czyli ma kilka trybów
 pracy, m.in.:
 <ul>
 <li class="fragment">tryb normalny</li>
 <li class="fragment">tryb wstawiania</li>
+<li class="fragment">tryb wizualny</li>
 </ul></li>
 </ul>
 </section>
-<section id="obsługa-edytora-vim-1" class="slide level2"
-data-transition="none">
-<h2 data-transition="none">Obsługa edytora vim</h2>
+<section id="obsługa-edytora-vim-1" class="slide level2">
+<h2>Obsługa edytora vim</h2>
 <ul>
 <li class="fragment">tryb normalny - służy do nawigacji po pliku i
 wykonywania poleceń</li>
@@ -554,9 +526,8 @@ wykonywania poleceń</li>
 <li class="fragment">wyjście z trybu wstawiania: <code>ESC</code></li>
 </ul>
 </section>
-<section id="obsługa-edytora-vim-2" class="slide level2"
-data-transition="none">
-<h2 data-transition="none">Obsługa edytora vim</h2>
+<section id="obsługa-edytora-vim-2" class="slide level2">
+<h2>Obsługa edytora vim</h2>
 <ul>
 <li class="fragment">szukanie tekstu: <code>/tekst</code></li>
 <li class="fragment">zapisanie pliku: <code>:w</code></li>
@@ -600,32 +571,78 @@ data-transition="none-in">
 </ul></li>
 </ul>
 </section>
-<section id="zadanie-4---poprawienie-linku-do-strony-about-us"
-class="slide level2">
-<h2>Zadanie 4 - poprawienie linku do strony about us</h2>
+<section id="zadanie-4---edycja-pliku" class="slide level2">
+<h2>Zadanie 4 - edycja pliku</h2>
+<p>Naszym zadaniem będzie zmiana nagłówka w naszej aplikacji</p>
+<p>Kod html strony znajduje się w pliku
+<code>templates/index.html</code> względem katalogu aplikacji.</p>
+<p>Należy zmienić nagłówek h1 z <code>Flask HTMX Demo</code> na dowlną
+inną wartość.</p>
+</section>
+<section id="zadanie-4---edycja-pliku-1" class="slide level2">
+<h2>Zadanie 4 - edycja pliku</h2>
 <div>
 <ul>
-<li>spróbuj otworzyć stronę <code>About Us</code></li>
-<li>otwórz plik index.html w edytorze vim</li>
-<li>znajdź link do strony <code>About Us</code></li>
-<li>popraw literówkę w linku</li>
-<li>zapisz i sprawdź efekt w przeglądarce</li>
-<li>wyjdź z vim-a</li>
+<li><p>przejdź do katalogu z aplikacją</p>
+<pre ><code class="bash">cd /opt/flaskapp</code></pre></li>
+<li><p>uruchom edytor <code>vim</code> i otwórz plik
+<code>templates/index.html</code></p>
+<pre ><code class="bash">vim templates/index.html</code></pre></li>
+<li><p>znajdź nagłówek h1 i zmień jego wartość</p></li>
+<li><p>zapisz plik i wyjdź z edytora</p></li>
 </ul>
 </div>
 </section>
-<section id="zadanie-4---poprawienie-linku-do-strony-about-us-1"
-class="slide level2">
-<h2>Zadanie 4 - poprawienie linku do strony about us</h2>
+<section id="zadanie-4---edycja-pliku-2" class="slide level2">
+<h2>Zadanie 4 - edycja pliku</h2>
+<p>w edytorze <code>vim</code>:</p>
 <div>
 <ul>
-<li>znajdź link do strony <code>About Us</code>:<br />
-<code>/About Us</code></li>
-<li>przejdź do trybu wstawiania: <code>i</code></li>
-<li>popraw link</li>
-<li>wyjdź z trybu wstawiania: <code>ESC</code></li>
-<li>zapisz: <code>:w</code></li>
-<li>wyjdź z vim-a: <code>:q</code></li>
+<li><p>znajdź nagłówek h1</p>
+<pre ><code class="bash">/&lt;h1&gt;</code></pre></li>
+<li><p>użyj <code>i</code> aby przejść do trybu wstawiania</p></li>
+<li><p>zmień wartość nagłówka</p></li>
+<li><p>użyj <code>ESC</code> aby wyjść z trybu wstawiania</p></li>
+<li><p>zapisz plik</p>
+<pre ><code class="bash">:wq</code></pre></li>
+</ul>
+</div>
+</section>
+<section id="zadanie-4---edycja-pliku-3" class="slide level2">
+<h2>Zadanie 4 - edycja pliku</h2>
+<div>
+<ul>
+<li><p>uruchom aplikację</p>
+<pre ><code class="bash">./app.py</code></pre></li>
+<li><p>odśwież stronę w przeglądarce</p></li>
+<li><p>zobacz zmiany w przeglądarce</p></li>
+</ul>
+</div>
+</section>
+<section id="system-wieloużytkownikowy" class="slide level2">
+<h2>System wieloużytkownikowy</h2>
+<ul>
+<li class="fragment">Linux jest systemem wieloużytkownikowym</li>
+<li class="fragment">każdy użytkownik ma swoje katalogi domowe,
+uprawnienia i ustawienia</li>
+<li class="fragment">każdy użytkownik może być zalogowany na kilku
+terminalach jednocześnie</li>
+</ul>
+</section>
+<section id="zadanie-5---praca-na-wielu-terminalach"
+class="slide level2">
+<h2>Zadanie 5 - praca na wielu terminalach</h2>
+<p>Naszym zadaniem będzie równoległe edytowanie pliku index.html or
+uruchomienie aplikacji</p>
+<div>
+<ul>
+<li>otwórz drugi terminal</li>
+<li>zaloguj się jako ten sam użytkownik</li>
+<li>w pierwszym terminalu uruchom aplikację</li>
+<li>w drugim terminalu otwórz plik <code>index.html</code> i dokonuj
+zmian</li>
+<li>zapisz plik bez wychodzenia z edytora</li>
+<li>sprawdź zmiany w przeglądarce</li>
 </ul>
 </div>
 </section>
@@ -665,62 +682,52 @@ znaków</li>
 podanego zakresu</li>
 </ul>
 </section>
-<section id="zadanie-5a---grep-i-wyrażenia-regularne"
-class="slide level2">
-<h2>Zadanie 5a - grep i wyrażenia regularne</h2>
+<section id="zadanie-5a---grepowanie-plików" class="slide level2">
+<h2>Zadanie 5a - “grepowanie” plików</h2>
 <div>
 <ul>
-<li><p>filtrowanie danych na standardowym wejściu</p>
-<pre><code>grep &quot;Marcin&quot;</code></pre></li>
-<li><p>wpisujemy losowe imiona, np:</p>
-<pre><code>Kasia
-Zosia
-Marcin
-Maciek</code></pre></li>
-<li><p>zakończ: <code>CTRL+c</code></p></li>
+<li><p>wyświetl wszystkie linie z logu aplikacji</p>
+<pre ><code class="bash">cat access.log</code></pre></li>
+<li><p>wyświetl wszystkie linie z logu aplikacji zawierające słowo
+<code>POST</code></p>
+<pre ><code class="bash">grep POST access.log</code></pre></li>
+<li><p>wyświetl wszystkie linie z logu z konkretego zakresu minut</p>
+<pre ><code class="bash">grep '12:3[0-5]:' access.log</code></pre></li>
+<li><p>wyświetl nagłówek h1 z pliku <code>index.html</code></p>
+<pre ><code class="bash">grep '&lt;h1&gt;' templates/index.html</code></pre></li>
 </ul>
 </div>
 </section>
-<section id="zadanie-5b---przeszukiwanie-listy-użytkowników"
-class="slide level2">
-<h2>Zadanie 5b - przeszukiwanie listy użytkowników</h2>
-<div>
-<ul>
-<li><p>wyświetl wszystkich użytkowników z loginami ‘user’:</p>
-<pre><code>grep &quot;user&quot; /etc/passwd</code></pre></li>
-<li><p>wyświetl użytkowników z jednocyfrowymi parzystymi numerami:</p>
-<pre><code>grep &quot;^user[02468]:&quot; /etc/passwd</code></pre></li>
-<li><p>wyświetl loginy zaczynające się na ‘user’:</p>
-<pre><code>grep &quot;^user&quot; /etc/passwd</code></pre></li>
-</ul>
-</div>
-</section>
-<section id="standardowe-wejście---klawiatura-potok-plik"
-class="slide level2">
-<h2>Standardowe wejście - klawiatura, potok, plik</h2>
+<section id="standardowe-wejście-i-wyjście" class="slide level2">
+<h2>Standardowe wejście i wyjście</h2>
 <ul>
 <li class="fragment">standardowe wejście - ujednolicone źródło danych
 dla programów</li>
-<li class="fragment">domyślnie jest to klawiatura</li>
-<li class="fragment">można przekierować standardowe wejście na plik</li>
-<li class="fragment">można przekierować standardowe wejście z jednego
+<li class="fragment">standardowe wyjście - ujednolicone miejsce, gdzie
+programy wypisują dane</li>
+<li class="fragment">domyślnie jest to klawiatura i ekran</li>
+</ul>
+</section>
+<section id="standardowe-wejście-i-wyjście---przekierowania"
+class="slide level2">
+<h2>Standardowe wejście i wyjście - przekierowania</h2>
+<ul>
+<li class="fragment">można przekierować standardowe wyjście na plik</li>
+<li class="fragment">można przekierować standardowe wyjście z jednego
 programu na standardowe wejście innego programu</li>
 <li class="fragment">przekierowanie między programami nazywa się
 potokiem</li>
-<li class="fragment">potok tworzy się za pomocą znaku
-<code>|</code></li>
+<li class="fragment">tworzy się go za pomocą znaku <code>|</code></li>
 </ul>
 </section>
-<section id="zadanie-5c---przeglądanie-logów-serwera-www"
-class="slide level2">
-<h2>Zadanie 5c - przeglądanie logów serwera WWW</h2>
+<section id="zadanie-5b---potoki" class="slide level2">
+<h2>Zadanie 5b - potoki</h2>
 <div>
 <ul>
-<li><p>wyświetl linie z logu, które zwracają kod 404:</p>
-<pre><code>cat /var/log/apache2/&lt;userX&gt;_access.log | grep &quot; 404 &quot;</code></pre></li>
-<li><p>wyświetl nowe linie z logu, które zwracają pliki z rozszerzeniem
-.jpg:</p>
-<pre><code>tail -F /var/log/apache2/&lt;login&gt;_access.log | grep &quot;\.jpg&quot;</code></pre></li>
+<li><p>śledź zmiany w logu aplikacji</p>
+<pre ><code class="bash">tail -F access.log</code></pre></li>
+<li><p>przekieruj wyjście z <code>tail</code> na <code>grep</code></p>
+<pre ><code class="bash">tail -F access.log | grep POST</code></pre></li>
 </ul>
 </div>
 </section>
@@ -779,30 +786,33 @@ dzieją się na 3 grupy</li>
 <li class="fragment">640 = 110 100 000 = <code>rw- r-- ---</code></li>
 </ul>
 </section>
-<section id="zadanie-6---poprawienie-uprawnień-do-plików"
+<section id="zadanie-6a---zmiana-uprawnień-do-pliku"
 class="slide level2">
-<h2>Zadanie 6 - poprawienie uprawnień do plików</h2>
+<h2>Zadanie 6a - zmiana uprawnień do pliku</h2>
 <div>
 <ul>
-<li>spróbuj przejść do strony <code>Ticket Details</code></li>
-<li>sprawdź komunikat błędu w logach
-(<code>&lt;userX&gt;_error.log</code>)</li>
-<li>dodaj uprawnienia do odczytu dla odpowiedniego pliku</li>
-<li>serwer WWW działa w grupie <code>www-data</code></li>
+<li><p>sprawdź uprawnienia do pliku <code>data.db</code></p>
+<pre ><code class="bash">ls -l data.db</code></pre></li>
+<li><p>usuń uprawnienie do zapisu dla pliku data.db</p>
+<pre ><code class="bash">chmod -w data.db</code></pre></li>
+<li><p>sprawdź uprawnienia do pliku <code>data.db</code></p>
+<pre ><code class="bash">ls -l data.db</code></pre></li>
+<li><p>spróbuj dodać nowe dane do aplikacji</p></li>
 </ul>
 </div>
 </section>
-<section id="zadanie-6---poprawienie-uprawnień-do-plików-1"
+<section id="zadanie-6b---zmiana-uprawnień-do-pliku"
 class="slide level2">
-<h2>Zadanie 6 - poprawienie uprawnień do plików</h2>
+<h2>Zadanie 6b - zmiana uprawnień do pliku</h2>
 <div>
 <ul>
-<li><p>zlokalizowanie pliku z niepoprawnymi uprawnieniami:</p>
-<pre><code>cat /var/log/apache2/&lt;userX&gt;_error.log</code></pre></li>
-<li><p>sprawdź uprawnienia do pliku:</p>
-<pre><code>ls -l ticket-details.html</code></pre></li>
-<li><p>popraw uprawnienia do pliku:</p>
-<pre><code>chmod g+r ticket-details.html</code></pre></li>
+<li><p>zabierz uprawnienia do odcztu dla pliku <code>data.db</code></p>
+<pre ><code class="bash">chmod -r data.db</code></pre></li>
+<li><p>sprawdź uprawnienia do pliku <code>data.db</code></p>
+<pre ><code class="bash">ls -l data.db</code></pre></li>
+<li><p>odśwież stronę aplikacji</p></li>
+<li><p>przywróć uprawnienia do pliku <code>data.db</code></p>
+<pre ><code class="bash">chmod 640 data.db</code></pre></li>
 </ul>
 </div>
 </section>
@@ -818,72 +828,146 @@ plików</li>
 rozpakowuje archiwum tar.gz</li>
 </ul>
 </section>
-<section id="zadanie-7---instalacja-bloga-wordpress"
+<section id="zadanie-7-finał---instalacja-bloga-wordpress"
 class="slide level2">
-<h2>Zadanie 7 - instalacja bloga Wordpress</h2>
+<h2>Zadanie 7 (finał) - instalacja bloga Wordpress</h2>
+<ul>
+<li class="fragment">ostatnim zadaniem będzie instalacja bloga
+Wordpress</li>
+<li class="fragment">będzie to okazja do wykorzystania wszystkich
+poznanych wcześniej komend (i trochę więcej)</li>
+<li class="fragment">to zadanie jest bardzo zbliżone do prawdziwych
+zadań, które wykonuje administrator systemu</li>
+</ul>
+</section>
+<section id="zadanie-7---instalacja-wordpress" class="slide level2">
+<h2>Zadanie 7 - instalacja Wordpress</h2>
+<p>Co należy zrobić:</p>
+<ul>
+<li class="fragment">musimy zainstalować serwer WWW wraz z obsługą PHP i
+bazy danych</li>
+<li class="fragment">musimy zainstalować i skonfigurować bazę
+danych</li>
+<li class="fragment">musimy pobrać i rozpakować bloga Wordpress</li>
+</ul>
+</section>
+<section id="zadanie-7---instalacja-wordpress-1" class="slide level2">
+<h2>Zadanie 7 - instalacja Wordpress</h2>
+<p>Instalacja serwera WWW:</p>
 <div>
 <ul>
+<li><p>zainstaluj serwer WWW Apache</p>
+<pre ><code class="bash">sudo dnf install httpd</code></pre></li>
+<li><p>zainstaluj PHP</p>
+<pre ><code class="bash">sudo dnf install php</code></pre></li>
+<li><p>uruchom serwer WWW</p>
+<pre ><code class="bash">sudo systemctl start httpd</code></pre></li>
+</ul>
+</div>
+</section>
+<section id="zadanie-7---instalacja-wordpress-2" class="slide level2">
+<h2>Zadanie 7 - instalacja Wordpress</h2>
+<p>Instalacja bazy danych:</p>
+<div>
+<ul>
+<li><p>zainstaluj bazę danych MariaDB</p>
+<pre ><code class="bash">sudo dnf install mariadb-server</code></pre></li>
+<li><p>uruchom bazę danych</p>
+<pre ><code class="bash">sudo systemctl start mariadb</code></pre></li>
+</ul>
+</div>
+</section>
+<section id="zadanie-7---instalacja-wordpress-3" class="slide level2">
+<h2>Zadanie 7 - instalacja Wordpress</h2>
+<p>Konfiguracja bazy danych:</p>
+<div>
+<ul>
+<li><p>utwórz bazę danych i użytkownika</p>
+<pre ><code class="bash">sudo mysql -u root -p</code></pre></li>
+<li><p>podajemy puste hasło</p></li>
+<li><p>stwórz bazę danych oraz użytkownika</p>
+<pre ><code class="sql">CREATE DATABASE wordpress;
+CREATE USER 'wordpress'@'localhost' IDENTIFIED BY 'wordpress';
+GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost';
+FLUSH PRIVILEGES;
+quit</code></pre></li>
+</ul>
+</div>
+</section>
+<section id="zadanie-7---instalacja-wordpress-4" class="slide level2">
+<h2>Zadanie 7 - instalacja Wordpress</h2>
+<div>
+<ul>
+<li><p>przełącz się na konto administratora</p>
+<pre ><code class="bash">sudo su -</code></pre></li>
 <li><p>przejdź do katalogu ze stroną WWW:</p>
-<pre><code>cd /var/www/html/&lt;userX&gt;</code></pre></li>
+<pre ><code >cd /var/www/html/</code></pre></li>
 <li><p>pobierz bloga Wordpress:</p>
-<pre><code>wget https://wordpress.org/latest.tar.gz</code></pre></li>
+<pre ><code >wget https://wordpress.org/latest.tar.gz</code></pre></li>
+</ul>
+</div>
+<ul>
+<li class="fragment"><p>zainstaluj program wget</p>
+<pre ><code class="bash">dnf install wget</code></pre></li>
+</ul>
+</section>
+<section id="zadanie-7---instalacja-wordpress-5" class="slide level2">
+<h2>Zadanie 7 - instalacja Wordpress</h2>
+<div>
+<ul>
 <li><p>rozpakuj archiwum:</p>
-<pre><code>tar -xzf latest.tar.gz</code></pre>
-<p>http://&lt;userX&gt;.warsztaty.linux.org.pl/wordpress/</p></li>
+<pre ><code >tar -xzf latest.tar.gz</code></pre></li>
+<li><p>wyświetl zawartość katalogu</p>
+<pre ><code class="bash">ls</code></pre></li>
+<li><p>przejdź do strony z Wordpress</p>
+<pre ><code class="bash">http://warsztaty.linux.org.pl:20080/worpress</code></pre></li>
 </ul>
 </div>
 </section>
-<section id="zadanie-7---instalacja-bloga-wordpress-1"
-class="slide level2">
-<h2>Zadanie 7 - instalacja bloga Wordpress</h2>
+<section id="zadananie-7---instalacja-wordpress" class="slide level2">
+<h2>Zadananie 7 - instalacja Wordpress</h2>
+<p>Napotykamy pierwszy problem - brak obsługi mysql w PHP.</p>
 <div>
 <ul>
-<li><p>dane konfiguracyjne do bazy danych znajdują się w pliku
-<code>/tmp/baza.txt</code></p></li>
-<li><p>po podaniu danych, otrzymamy komunikat, że Wordpress nie może
-zapisać pliku konfiguracyjnego.</p></li>
-<li><p>dodać uprawnienia do zapisu dla katalogu Wordpress:</p>
-<pre><code>chmod g+w wordpress</code></pre></li>
-<li><p>odświeżyć stronę i kontynuować instalację</p></li>
+<li><p>znajdź pakiet, który zawiera brakujące rozszerzenie</p>
+<pre ><code class="bash">dnf search php-mysql
+# lub używając poleceń grep
+dnf search mysql | grep php</code></pre></li>
+<li><p>zainstaluj brakujące rozszerzenie</p>
+<pre ><code class="bash">dnf install php-mysqlnd</code></pre></li>
+<li><p>zrestartuj serwer WWW or PHP</p>
+<pre ><code class="bash">systemctl restart httpd
+systemctl restart php-fpm</code></pre></li>
 </ul>
 </div>
 </section>
-<section id="uruchamianie-programów" class="slide level2">
-<h2>Uruchamianie programów</h2>
-<ul>
-<li class="fragment"><p>programy uruchamiany podając ich ścieżkę i
-nazwę</p></li>
-<li class="fragment"><p>ścieżka może być względna lub
-bezwzględna</p></li>
-<li class="fragment"><p>ścieżkę można pominąć, jeśli program znajduje
-się w katalogu, który jest w zmiennej środowiskowej PATH</p></li>
-<li class="fragment"><p>chcąc uruchomić program z bieżącego katalogu,
-można podać ścieżkę względną:</p>
-<pre><code>./program</code></pre></li>
-</ul>
-</section>
-<section id="zadanie-7---uruchomienie-programu" class="slide level2">
-<h2>Zadanie 7 - uruchomienie programu</h2>
+<section id="zadanie-7---instalacja-wordpress-6" class="slide level2">
+<h2>Zadanie 7 - instalacja Wordpress</h2>
 <div>
 <ul>
-<li><p>skopiuj program do katalogu domowego</p></li>
-<li><p>program znajduje się w katalogu:</p>
-<pre><code>/var/www/html/user0/v2/files/guess.py</code></pre></li>
-<li><p>uruchom program</p></li>
-<li><p>popraw uprawnienia do pliku, jeśli będzie taka potrzeba</p></li>
+<li><p>odśwież stronę z Wordpress</p></li>
+<li><p>uzupełnij dane do bazy danych</p>
+<pre ><code >database: wordpress
+user: wordpress
+password: wordpress
+host: localhost</code></pre></li>
+<li><p>zatwierdź</p></li>
+<li><p>ups</p></li>
 </ul>
 </div>
 </section>
-<section id="zadanie-7---uruchomienie-programu-1" class="slide level2">
-<h2>Zadanie 7 - uruchomienie programu</h2>
+<section id="zadanie-7---instalacja-wordpress-7" class="slide level2">
+<h2>Zadanie 7 - instalacja Wordpress</h2>
 <div>
 <ul>
-<li><p>przejdź do katalogu domowego:</p>
-<pre><code>cd</code></pre></li>
-<li><p>kopiowanie programu:</p>
-<pre><code>cp /var/www/html/user0/v2/files/guess.py ./</code></pre></li>
-<li><p>uruchomienie programu:</p>
-<pre><code>./guess.py</code></pre></li>
+<li><p>Widzimy błąd, że plik <code>wp-config.php</code> nie mógł zostać
+utworzony.</p></li>
+<li><p>Wynika to z faktu, że serwer WWW nie ma uprawnień do zapisu w
+katalogu Wordpress.</p></li>
+<li><p>Musimy zmienić uprawnienia katalogu
+<code>/var/www/html/wordpress</code>.</p>
+<pre ><code class="bash">chown -R apache:apache /var/www/html/wordpress</code></pre></li>
+<li><p>cofnij się do strony z Wordpress i spróbuj ponownie</p></li>
 </ul>
 </div>
 </section>
@@ -891,9 +975,9 @@ można podać ścieżkę względną:</p>
 <h2>Co dalej?</h2>
 <ul>
 <li class="fragment"><p>podręcznik manuala:</p>
-<pre><code>man &lt;polecenie&gt;</code></pre>
+<pre ><code >man &lt;polecenie&gt;</code></pre>
 <p>np:</p>
-<pre><code>man ls</code></pre></li>
+<pre ><code >man ls</code></pre></li>
 <li class="fragment"><p>społeczności: Polska Grupa Użytkowników Linuksa
 https://discord.linux.org.pl</p></li>
 <li class="fragment"><p>praktyka, praktyka, praktyka (maszyna wirtualna,
@@ -912,6 +996,7 @@ vps, Raspberry Pi)</p></li>
   <script src="https://unpkg.com/reveal.js@^4//plugin/notes/notes.js"></script>
   <script src="https://unpkg.com/reveal.js@^4//plugin/search/search.js"></script>
   <script src="https://unpkg.com/reveal.js@^4//plugin/zoom/zoom.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/highlight/highlight.js"></script>
 
   <script>
 
@@ -1058,12 +1143,19 @@ vps, Raspberry Pi)</p></li>
         // viewDistance in order to save resources.
         mobileViewDistance: 2,
 
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1200,
+
         // reveal.js plugins
         plugins: [
           RevealNotes,
           RevealSearch,
-          RevealZoom
+          RevealZoom,
+          RevealHighlight
         ]
+        
       });
     </script>
     </body>

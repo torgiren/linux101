@@ -1,20 +1,8 @@
 % Wprowadzenie do systemu GNU/Linux
 % Marcin Fabrykowski
-% ![](img/logo.png){heigth=50px} ![](img/akamai-logo.png){heigth=50px}
+% ![](img/logo.png){heigth=50px}
 
-## Prezentacja
-
-::: nonincremental
-
-- dostępna pod adresem:  
-  https://torgiren.github.io/linux101
-
-- repozytorium:  
-  https://github.com/torgiren/linux101
-
-:::
-
-## Czym jest system operacyjny?
+## Czym jest system operacyjny???
 
 - To program, który zarządza zasobami komputera.
 
@@ -26,29 +14,21 @@
 
 ![](img/systemstructure.png)
 
-## Jak wygląda OS? {data-transition="none-out"}
+## Jak wygląda OS?
 
 Windows
 
 ![](img/os_windows1.png){width=85%}
 
-## Jak wygląda OS? {data-transition="none"}
+## Jak wygląda OS?
 
 Linux
 
-![](img/os_linux1.png)
-
-## Jak wygląda OS? {data-transition="none"}
-
-Linux
-
-![](img/os_linux2.png){width=80%}
-
-## Jak wygląda OS? {data-transition="none slide-out"}
-
-Linux
-
-![](img/os_linux3.gif){width=80%}
+::: {.r-stack}
+![](img/os_linux1.png){width=80% .fragment }
+![](img/os_linux2.png){width=80% .fragment }
+![](img/os_linux3.gif){width=80% .fragment }
+:::
 
 ## Po co mi Linux?
 
@@ -84,11 +64,12 @@ z httpd i mysql ok 150 MB RAM
 ::: nonincremental
 
 - łączenie się z serwerem
-- konfiguracja strony WWW
-- bazując na otrzymanym efekcie, zrozumienie podstawowych operacji na systemie, czyli:
-  - poruszanie się po systemie
-  - operacje na plikach i katalogach
+- poruszanie się po systemie
+- uruchomienie prostej aplikacji
+- operacje na plikach i katalogach
+- instalacja oprogramowania
 - obsługa edytora vim
+- konfiguracja strony WWW
 - podstawy wyrażeń regularnych
 - konfiguracja bloga opartego o Wordpress
 
@@ -98,7 +79,7 @@ z httpd i mysql ok 150 MB RAM
 
 - `polecenie` - polecenie, które należy wpisać w terminalu
 - `<nazwa>` - zmienna, którą należy zastąpić odpowiednią wartością (bez znaków `<` i `>`)
-- `cd <userX>` == `cd user40` (dla `user40`)
+- `cd <userX>` oznacza `cd user40` (dla `user40`)
 
 ## łączenie się z serwerem
 
@@ -110,9 +91,10 @@ z httpd i mysql ok 150 MB RAM
 
 ## Prompt
 
-~~~~~~~
+```
 user3@warsztaty:~$
-~~~~~~~
+```
+
 - `user3` - nazwa użytkownika
 - `@` - at
 - `warsztaty` - nazwa hosta
@@ -122,30 +104,12 @@ user3@warsztaty:~$
 
 ## Składnia poleceń
 
-- `polecenie [opcje] [argumenty]`
+- `polecenie`&blank;`[opcje]`&blank;`[argumenty]`
 - `ls -l /etc`
-
-## konfiguracja strony WWW
-
-~~~~~~~ {.numberLines}
-cd /var/www/html/<userX>
-cp /var/www/html/user0/v2/strona.tar.gz ./
-tar -xzf strona.tar.gz
-~~~~~~~ 
-
-np:
-
-~~~~~~~ {.numberLines}
-cd /var/www/html/user40
-cp /var/www/html/user0/v2/strona.tar.gz ./
-tar -xzf strona.tar.gz
-~~~~~~~
-
-http://&lt;userX&gt;.warsztaty.linux.org.pl/strona/
 
 ## Struktura systemu plików
 
-```
+```{.bash .number-lines}
 /
 ├── run
 │   ├── agetty.reload
@@ -165,7 +129,7 @@ http://&lt;userX&gt;.warsztaty.linux.org.pl/strona/
 ## Struktura systemu plików
 
 Przykładowe ścieżki do plików i katalogów
-```
+```{.bash .number-lines}
 # katalogi
 /etc/
 /home/
@@ -184,7 +148,6 @@ Przykładowe ścieżki do plików i katalogów
 - ścieżka względna wskazuje na plik lub katalog względem bieżącego katalogu
 - ścieżka bezwzględna wskazuje na plik lub katalog względem katalogu głównego
 
-
 ## Ścieżki do plików i katalogów
 
 Będąc w katalogu  
@@ -194,16 +157,16 @@ Będąc w katalogu
 :::::::::::::: {.columns}
 ::: {.column width="50%"}
 - ścieżka względna:  
-  ```
+  ```{.bash}
   index.html
   ```
 - ścieżka bezwzględna:  
-  ```
+  ```{.bash}
   /home/user1/index.html
   ```
 :::
 ::: {.column width="50%"}
-```
+```{.bash}
 home/
 ├── user1 <==
 │   └── index.html
@@ -212,6 +175,7 @@ home/
 ```
 :::
 ::::::::::::::
+
 ## Ścieżki do plików i katalogów
 
 Natomiast będąc w katalogu  
@@ -221,18 +185,18 @@ Natomiast będąc w katalogu
 :::::::::::::: {.columns}
 ::: {.column width="50%"}
 - ścieżka względna:  
-  ```
+  ```{.bash}
   ../user1/index.html
   ```
 - ścieżka bezwzględna:  
-  ```
+  ```{.bash}
   /home/user1/index.html
   ```
 :::
 ::: {.column width="50%"}
-```
+```{.bash}
 home/
-├── user1
+├── user1{.bash}
 │   └── index.html
 └── user2 <==
     └── notatki.txt
@@ -265,39 +229,63 @@ home/
 
 :::
 
-## Zadanie 1 - przejście do katalogu ze stroną WWW
+## Zadanie 0 - pierwsze uruchomienie programu
+
+Pierwszym zadaniem będzie uruchomienie programu `cmatrix`.
 
 ::: nonincremental
 
-- stronę WWW umieściliśmy w katalogu:
+- aby uruchomić program, wpisz jego nazwę i naciśnij `Enter` 
+  ```{.bash}
+  cmatrix
   ```
-  /var/www/html/<userX>/strona
-  ```
-- przejdź do katalogu ze stroną WWW
-- wypisz aktualną ścieżkę
-- wyświetl zawartość katalogu
+- aby zakończyć program, naciśnij `CTRL+c`
 
 :::
 
-## Zadanie 1 - przejście do katalogu ze stroną WWW
+## Zadanie 0 - przekazywanie parametrów
 
 ::: nonincremental
 
-- stronę WWW umieściliśmy w katalogu:
+- parametry mogą być bez wartości, np. `-r`
+  ```{.shell}
+  cmatrix -r
   ```
-  /var/www/html/<userX>/strona
+- parametry mogą mieć wartość, np. `-C red`
+  ```{.shell}
+  cmatrix -C red
   ```
-- przejście do katalogu ze stroną WWW:
+- parametry można łączyć
+  ```{.shell}
+  cmatrix -C blue -u 4 -s
   ```
-  cd /var/www/html/<userX>/strona
+:::
+
+## Zadanie 1 - uruchomienie aplikacji
+
+Drugą aplikacją, którą uruchomimy, będzie aplikacja webowa.
+Aplikacja znajduje się w katalogu `/opt/flaskapp`.
+
+## Zadanie 1 - uruchomienie aplikacji
+
+::: nonincremental
+
+- przejdź do katalogu z aplikacją 
+  ```{.bash}
+  cd /opt/flaskapp
   ```
-- wypisanie aktualnej ścieżki:
-  ```
-  pwd
-  ```
-- wyświetlenie zawartości katalogu:
-  ```
+- wyświetl zawartość katalogu
+  ```{.bash}
   ls
+  ```
+
+- uruchom aplikację 
+  ```{.bash}
+  ./app.py
+  ```
+- przejdź do przeglądarki i otwórz stronę:  
+  ```{.shell}
+  https://user<X>.warsztaty.linux.org.pl
   ```
 
 :::
@@ -311,11 +299,9 @@ home/
 - `cp` - kopiowanie plików
 - `mv` - przenoszenie i zmiana nazwy plików
 - `rm` - usuwanie plików
-
+ 
 ## Operacje na plikach i katalogach
 
-- `cat` (bez argumentów) - wyświetla na ekranie dane z wejścia standardowego   
-  (ctrl+d lub ctrl+c aby zakończyć)
 - `cat <plik>` - wyświetla zawartość pliku
 - `tail <plik>` - wyświetla końcowe linie pliku
 - `tail -n <liczba> <plik>` - wyświetla ostatnie `<liczba>` linii pliku
@@ -328,105 +314,187 @@ home/
 - `mv <plik1> <plik2>` - zmienia nazwę pliku1 na plik2
 - `mv <plik1> <katalog>` - przenosi plik1 do katalogu
 
-## Zadanie 2a - przeglądanie logów serwera WWW
+## Zadanie 2a - wyświetlenie zawartości pliku
+
+Nasza aplikacja stworzyła plik z bazą danych.
+Aby go wyświetlić, użyjemy polecenia `cat`.
 
 ::: nonincremental
 
-- logi serwera WWW znajdują się w katalogu:  
+- przejdź do katalogu z aplikacją 
+  ```{.bash}
+  cd /opt/flaskapp
   ```
-  /var/log/apache2
-  ```
-- plik z logami serwera WWW:  
-  ```
-  /var/log/apache2/<userX>_access.log
-  ```
-- przejdź do katalogu z logami
-- wyświetl zawartość pliku `<userX>_access.log`
-
-:::
-
-## Zadanie 2a - przeglądanie logów serwera WWW
-
-::: nonincremental
-
-- przejdź do katalogu z logami
-  ```
-  cd /var/log/apache2
-  ```
-- wyświetl zawartość pliku `<userX>_access.log`
-  ```
-  cat <userX>_access.log
+- wyświetl zawartość pliku `baza.db`
+  ```{.bash}
+  cat baza.db
   ```
 
 :::
 
-## Zadananie 2b - przeglądanie logów serwera WWW
+## Zadanie 2b - kopiowanie pliku
+
+Możemy zrobić kopię pliku `baza.db` i nazwać ją `baza.db.bak`.
 
 ::: nonincremental
 
-- wyświetl 5 ostatnich linii pliku logów:  
-- wyświetlaj nowe linie pliku access.log:  
-- znajdź linie z kodem 404
-
-:::
-
-## Zadanie 2b - przeglądanie logów serwera WWW
-
-::: nonincremental
-
-- wyświetl 5 ostatnich linii pliku logów:  
+- skopiuj plik `baza.db` do pliku `baza.db.bak`
+  ```{.bash}
+  cp baza.db baza.db.bak
   ```
-  tail -n 5 <userX>_access.log
-  ```
-- wyświetlaj nowe linie pliku access.log:  
-  ```
-  tail -F <userX>_access.log
-  ```
-- znajdź linie z kodem 404, np:
-  ```
-  31.179.32.96 - - [18/Oct/2023:17:57:06 +0000] "GET /strona/assets/images/show-events-02.jgp HTTP/1.1" 404 506 "http://user4.warsztaty.linux.org.pl/strona/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/118.0"
-  ```
-
-:::
-
-## Zadanie 3 - poprawienie brakującego obrazka
-
-::: nonincremental
-
-- na stronie głównej brakuje obrazka
-- przejdź do katalogu z brakującym plikiem
-- wylistuj pliki w tym katologu
-- zmień nazwę pliku z rozszerzeniem .jgp na .jpg
-- sprawdź, czy obrazek się wyświetla
-
-:::
-
-## Zadanie 3 - poprawienie brakującego obrazka
-
-::: nonincremental
-
-- przejdź do katalogu z brakującym plikiem
-  ```
-  cd /var/www/html/<login>/strona/assets/images
-  ```
-- wylistuj pliki w tym katologu
-  ```
+- wyświetl zawartość katalogu, aby sprawdzić, czy plik został skopiowany
+  ```{.bash}
   ls
   ```
-- zmień nazwę pliku z rozszerzeniem .jgp na .jpg
-  ```
-  mv show-events-02.jgp show-events-02.jpg
+- wyświetl zawartość pliku `baza.db.bak`
+  ```{.bash}
+  cat baza.db.bak
   ```
 
 :::
 
-## Obsługa edytora vim {data-transition="none-out"}
+## Zadanie 2b - kopiowanie pliku
+
+Możemy również przywrócić bazę danych z kopii.
+
+::: nonincremental
+
+- dodaj nowe dane do aplikacji
+- wyświetl zawartość pliku `baza.db`
+  ```{.bash}
+  cat baza.db
+  ```
+- przywróć bazę danych z kopii
+  ```{.bash}
+  cp baza.db.bak baza.db
+  ```
+- wyświetl zawartość pliku `baza.db`
+  ```{.bash}
+  cat baza.db
+  ```
+- odśwież stronę aplikacji
+
+:::
+
+## Zadanie 2c - zmiana nazwy pliku
+
+Możemy zmienić nazwę pliku `baza.db.bak` na `baza.db.<data>`.
+
+::: nonincremental
+
+- wyświetl zawartość katalogu, aby sprawdzić, czy plik istnieje
+  ```{.bash}
+  ls
+  ```
+- zmień nazwę pliku `baza.db.bak` na `baza.db.<data>`
+  ```{.bash}
+  mv baza.db.bak baza.db.20241010`
+  ```
+- wyświetl zawartość katalogu, aby sprawdzić, czy plik został zmieniony
+  ```{.bash}
+  ls
+  ```
+
+:::
+
+## Zadanie 2d - usuwanie pliku
+
+Możemy usunąć plik `baza.db.20241010`.
+
+::: nonincremental
+
+- wyświetl zawartość katalogu, aby sprawdzić, czy plik istnieje
+  ```{.bash}
+  ls
+  ```
+- usuń plik `baza.db.20241010`
+  ```{.bash}
+  rm baza.db.20241010
+  ```
+- wyświetl zawartość katalogu, aby sprawdzić, czy plik został usunięty
+  ```{.bash}
+  ls
+  ```
+
+:::
+
+## Instalacja oprogramowania
+
+- Do instalacji oprogramowania w systemie Linux służy (przeważnie) menadżer pakietów.
+
+- W zależności od dystrybucji, mogą to być np.:
+
+  ::: {.nonincremental}
+  
+  - `apt` - Debian, Ubuntu
+  - `dnf` - Fedora
+  
+  :::
+
+- Tylko administrator systemu może instalować oprogramowanie.
+
+## Wykonywanie poleceń jako administrator
+
+- Aby wykonać polecenie jako administrator, należy dodać przed nim `sudo`.
+- składnia:  
+  `sudo <polecenie>`
+
+## Zadanie 3a - wykonywanie poleceń jako administrator
+
+::: nonincremental
+
+- sprawdzmy nazwę użytkownika
+  ```{.bash}
+  whoami
+  ```
+- wykonajmy polecenie `sudo whoami`
+  ```{.bash}
+  sudo whoami
+  ```
+- często spotykane jest przejście do trybu administratora
+  ```{.bash}
+  sudo su -
+  ```
+- wyjdźmy z trybu administratora
+  ```{.bash}
+  exit
+  ```
+
+:::
+
+## Zadanie 3b - instalacja programu
+
+Zainstalujemy edytor tekstu `vim`.
+
+::: nonincremental
+
+- sprawdź czy program `vim` jest zainstalowany
+  ```{.bash}
+  vim
+  ```
+- spróbuj zainstalować program `vim` jako użytkownik
+  ```{.bash}
+  dnf install vim
+  ```
+- zainstaluj program `vim` jako administrator
+  ```{.bash}
+  sudo dnf install vim
+  ```
+- sprawdź czy program `vim` jest zainstalowany
+  ```{.bash}
+  vim
+  ```
+
+:::
+
+## Obsługa edytora vim
 
 - vim jest edytorem modalnym, czyli ma kilka trybów pracy, m.in.:  
   - tryb normalny
   - tryb wstawiania
+  - tryb wizualny
 
-## Obsługa edytora vim {data-transition="none"}
+## Obsługa edytora vim
 
 - tryb normalny - służy do nawigacji po pliku i wykonywania poleceń
 - nawigować można za pomocą klawiszy `h`, `j`, `k`, `l` lub strzałek
@@ -434,7 +502,7 @@ home/
 - ...jak również na kilkanaście innych sposobów
 - wyjście z trybu wstawiania: `ESC`
 
-## Obsługa edytora vim {data-transition="none"}
+## Obsługa edytora vim
 
 - szukanie tekstu: `/tekst`
 - zapisanie pliku: `:w`
@@ -463,31 +531,86 @@ home/
   - linijka poniżej: `o`
   - linijka powyżej: `O`
 
+## Zadanie 4 - edycja pliku
 
-## Zadanie 4 - poprawienie linku do strony about us
+Naszym zadaniem będzie zmiana nagłówka w naszej aplikacji
 
-::: nonincremental
-- spróbuj otworzyć stronę `About Us`
-- otwórz plik index.html w edytorze vim
-- znajdź link do strony `About Us`
-- popraw literówkę w linku
-- zapisz i sprawdź efekt w przeglądarce
-- wyjdź z vim-a
-:::
+Kod html strony znajduje się w pliku `templates/index.html` względem katalogu aplikacji.
 
-## Zadanie 4 - poprawienie linku do strony about us
+Należy zmienić nagłówek h1 z `Flask HTMX Demo` na dowlną inną wartość.
+
+## Zadanie 4 - edycja pliku
 
 ::: nonincremental
 
-- znajdź link do strony `About Us`:  
-  `/About Us`
-- przejdź do trybu wstawiania: `i`
-- popraw link
-- wyjdź z trybu wstawiania: `ESC`
-- zapisz: `:w`
-- wyjdź z vim-a: `:q`
+- przejdź do katalogu z aplikacją 
+  ```{.bash}
+  cd /opt/flaskapp
+  ```
+- uruchom edytor `vim` i otwórz plik `templates/index.html`
+  ```{.bash}
+  vim templates/index.html
+  ```
+- znajdź nagłówek h1 i zmień jego wartość
+- zapisz plik i wyjdź z edytora
 
 :::
+
+## Zadanie 4 - edycja pliku
+
+w edytorze `vim`:
+
+::: nonincremental
+
+- znajdź nagłówek h1
+  ```{.bash}
+  /<h1>
+  ```
+- użyj `i` aby przejść do trybu wstawiania
+- zmień wartość nagłówka
+- użyj `ESC` aby wyjść z trybu wstawiania
+- zapisz plik
+  ```{.bash}
+  :wq
+  ```
+
+:::
+
+## Zadanie 4 - edycja pliku
+
+::: nonincremental
+
+- uruchom aplikację
+  ```{.bash}
+  ./app.py
+  ```
+- odśwież stronę w przeglądarce
+- zobacz zmiany w przeglądarce
+
+:::
+
+## System wieloużytkownikowy
+
+- Linux jest systemem wieloużytkownikowym
+- każdy użytkownik ma swoje katalogi domowe, uprawnienia i ustawienia
+- każdy użytkownik może być zalogowany na kilku terminalach jednocześnie
+
+
+## Zadanie 5 - praca na wielu terminalach
+
+Naszym zadaniem będzie równoległe edytowanie pliku index.html or uruchomienie aplikacji
+
+::: nonincremental
+
+- otwórz drugi terminal
+- zaloguj się jako ten sam użytkownik
+- w pierwszym terminalu uruchom aplikację
+- w drugim terminalu otwórz plik `index.html` i dokonuj zmian
+- zapisz plik bez wychodzenia z edytora
+- sprawdź zmiany w przeglądarce
+
+:::
+
 
 ## Grep i wyrażenia regularne
 
@@ -511,66 +634,53 @@ home/
 - `$` - koniec linii
 - `[a-z],[abc],[0-9]` - dowolny znak z podanego zakresu
 
-## Zadanie 5a - grep i wyrażenia regularne
+## Zadanie 5a - "grepowanie" plików
 
 ::: nonincremental
 
-- filtrowanie danych na standardowym wejściu
+- wyświetl wszystkie linie z logu aplikacji
+  ```{.bash}
+  cat access.log
   ```
-  grep "Marcin"
+- wyświetl wszystkie linie z logu aplikacji zawierające słowo `POST`
+  ```{.bash}
+  grep POST access.log
   ```
-- wpisujemy losowe imiona, np:
+- wyświetl wszystkie linie z logu z konkretego zakresu minut
+  ```{.bash}
+  grep '12:3[0-5]:' access.log
   ```
-  Kasia
-  Zosia
-  Marcin
-  Maciek
-  ```
-- zakończ: `CTRL+c`
-
-:::
-
-
-## Zadanie 5b - przeszukiwanie listy użytkowników
-
-::: nonincremental
-
-- wyświetl wszystkich użytkowników z loginami 'user':
-  ```
-  grep "user" /etc/passwd
-  ```
-- wyświetl użytkowników z jednocyfrowymi parzystymi numerami:
-  ```
-  grep "^user[02468]:" /etc/passwd
-  ```
-- wyświetl loginy zaczynające się na 'user':
-  ```
-  grep "^user" /etc/passwd
+- wyświetl nagłówek h1 z pliku `index.html`
+  ```{.bash}
+  grep '<h1>' templates/index.html
   ```
 
 :::
 
-## Standardowe wejście - klawiatura, potok, plik
+## Standardowe wejście i wyjście
 
 - standardowe wejście - ujednolicone źródło danych dla programów
-- domyślnie jest to klawiatura
-- można przekierować standardowe wejście na plik
-- można przekierować standardowe wejście z jednego programu na standardowe wejście innego programu
-- przekierowanie między programami nazywa się potokiem
-- potok tworzy się za pomocą znaku `|`
+- standardowe wyjście - ujednolicone miejsce, gdzie programy wypisują dane
+- domyślnie jest to klawiatura i ekran
 
-## Zadanie 5c - przeglądanie logów serwera WWW
+## Standardowe wejście i wyjście - przekierowania
+
+- można przekierować standardowe wyjście na plik
+- można przekierować standardowe wyjście z jednego programu na standardowe wejście innego programu
+- przekierowanie między programami nazywa się potokiem
+- tworzy się go za pomocą znaku `|`
+
+## Zadanie 5b - potoki
 
 ::: nonincremental
 
-- wyświetl linie z logu, które zwracają kod 404:  
+- śledź zmiany w logu aplikacji
+  ```{.bash}
+  tail -F access.log
   ```
-  cat /var/log/apache2/<userX>_access.log | grep " 404 "
-  ```
-
-- wyświetl nowe linie z logu, które zwracają pliki z rozszerzeniem .jpg:  
-  ```
-  tail -F /var/log/apache2/<login>_access.log | grep "\.jpg"
+- przekieruj wyjście z `tail` na `grep`
+  ```{.bash}
+  tail -F access.log | grep POST
   ```
 
 :::
@@ -616,31 +726,42 @@ home/
 - 640 jest w systemie ósemkowym
 - 640 = 110 100 000 = `rw- r-- ---`
 
-## Zadanie 6 - poprawienie uprawnień do plików
+## Zadanie 6a - zmiana uprawnień do pliku
 
 ::: nonincremental
 
-- spróbuj przejść do strony `Ticket Details`
-- sprawdź komunikat błędu w logach (`<userX>_error.log`)
-- dodaj uprawnienia do odczytu dla odpowiedniego pliku
-- serwer WWW działa w grupie `www-data`
+- sprawdź uprawnienia do pliku `data.db`
+  ```{.bash}
+  ls -l data.db
+  ```
+- usuń uprawnienie do zapisu dla pliku data.db
+  ```{.bash}
+  chmod -w data.db
+  ```
+- sprawdź uprawnienia do pliku `data.db`
+  ```{.bash}
+  ls -l data.db
+  ```
+- spróbuj dodać nowe dane do aplikacji
 
 :::
-## Zadanie 6 - poprawienie uprawnień do plików
+
+## Zadanie 6b - zmiana uprawnień do pliku
 
 ::: nonincremental
 
-- zlokalizowanie pliku z niepoprawnymi uprawnieniami:  
+- zabierz uprawnienia do odcztu dla pliku `data.db`
+  ```{.bash}
+  chmod -r data.db
   ```
-  cat /var/log/apache2/<userX>_error.log
+- sprawdź uprawnienia do pliku `data.db`
+  ```{.bash}
+  ls -l data.db
   ```
-- sprawdź uprawnienia do pliku:  
-  ```
-  ls -l ticket-details.html
-  ```
-- popraw uprawnienia do pliku:  
-  ```
-  chmod g+r ticket-details.html
+- odśwież stronę aplikacji
+- przywróć uprawnienia do pliku `data.db`
+  ```{.bash}
+  chmod 640 data.db
   ```
 
 :::
@@ -651,83 +772,177 @@ home/
 - `tar` - program do archiwizacji plików
 - `tar -xzf <archiwum>` - rozpakowuje archiwum tar.gz
 
-## Zadanie 7 - instalacja bloga Wordpress
+## Zadanie 7 (finał) - instalacja bloga Wordpress
+
+- ostatnim zadaniem będzie instalacja bloga Wordpress
+- będzie to okazja do wykorzystania wszystkich poznanych wcześniej komend (i trochę więcej)
+- to zadanie jest bardzo zbliżone do prawdziwych zadań, które wykonuje administrator systemu
+
+## Zadanie 7 - instalacja Wordpress
+
+Co należy zrobić:
+
+- musimy zainstalować serwer WWW wraz z obsługą PHP i bazy danych
+- musimy zainstalować i skonfigurować bazę danych
+- musimy pobrać i rozpakować bloga Wordpress
+
+## Zadanie 7 - instalacja Wordpress
+
+Instalacja serwera WWW:
 
 ::: nonincremental
 
+- zainstaluj serwer WWW Apache
+  ```{.bash}
+  sudo dnf install httpd
+  ```
+- zainstaluj PHP
+  ```{.bash}
+  sudo dnf install php
+  ```
+- uruchom serwer WWW
+  ```{.bash}
+  sudo systemctl start httpd
+  ```
+
+:::
+
+## Zadanie 7 - instalacja Wordpress
+
+Instalacja bazy danych:
+
+::: nonincremental
+
+- zainstaluj bazę danych MariaDB
+  ```{.bash}
+  sudo dnf install mariadb-server
+  ```
+- uruchom bazę danych
+  ```{.bash}
+  sudo systemctl start mariadb
+  ```
+
+:::
+
+## Zadanie 7 - instalacja Wordpress
+
+Konfiguracja bazy danych:
+
+::: nonincremental
+
+- utwórz bazę danych i użytkownika
+  ```{.bash}
+  sudo mysql -u root -p
+  ```
+- podajemy puste hasło
+- stwórz bazę danych oraz użytkownika
+  ```{.sql}
+  CREATE DATABASE wordpress;
+  CREATE USER 'wordpress'@'localhost' IDENTIFIED BY 'wordpress';
+  GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost';
+  FLUSH PRIVILEGES;
+  quit
+  ```
+::: 
+
+## Zadanie 7 - instalacja Wordpress
+
+::: nonincremental
+
+- przełącz się na konto administratora
+  ```{.bash}
+  sudo su -
+  ```
 - przejdź do katalogu ze stroną WWW:  
   ```
-  cd /var/www/html/<userX>
+  cd /var/www/html/
   ```
-- pobierz bloga Wordpress:  
+- pobierz bloga Wordpress:
   ```
   wget https://wordpress.org/latest.tar.gz
   ```
+
+:::
+
+- zainstaluj program wget
+  ```{.bash}
+  dnf install wget
+  ```
+
+
+## Zadanie 7 - instalacja Wordpress
+
+::: nonincremental
+
 - rozpakuj archiwum:
   ```
   tar -xzf latest.tar.gz
   ```
-http://&lt;userX&gt;.warsztaty.linux.org.pl/wordpress/
+- wyświetl zawartość katalogu
+  ```{.bash}
+  ls
+  ```
+- przejdź do strony z Wordpress
+  ```{.bash}
+  http://warsztaty.linux.org.pl:20080/worpress
+  ```
 
 :::
 
-## Zadanie 7 - instalacja bloga Wordpress
+## Zadananie 7 - instalacja Wordpress
+
+Napotykamy pierwszy problem - brak obsługi mysql w PHP.
 
 ::: nonincremental
 
-- dane konfiguracyjne do bazy danych znajdują się w pliku `/tmp/baza.txt`
-
-- po podaniu danych, otrzymamy komunikat, że Wordpress nie może zapisać pliku konfiguracyjnego.  
-
-- dodać uprawnienia do zapisu dla katalogu Wordpress:  
+- znajdź pakiet, który zawiera brakujące rozszerzenie
+  ```{.bash}
+  dnf search php-mysql
+  # lub używając poleceń grep
+  dnf search mysql | grep php
   ```
-  chmod g+w wordpress
+- zainstaluj brakujące rozszerzenie
+  ```{.bash}
+  dnf install php-mysqlnd
   ```
-
-- odświeżyć stronę i kontynuować instalację
+- zrestartuj serwer WWW or PHP
+  ```{.bash}
+  systemctl restart httpd
+  systemctl restart php-fpm
+  ```
 
 :::
 
-## Uruchamianie programów
-
-- programy uruchamiany podając ich ścieżkę i nazwę
-- ścieżka może być względna lub bezwzględna
-- ścieżkę można pominąć, jeśli program znajduje się w katalogu, który jest w zmiennej środowiskowej PATH
-- chcąc uruchomić program z bieżącego katalogu, można podać ścieżkę względną:
-  ```
-  ./program
-  ```
-
-## Zadanie 7 - uruchomienie programu
+## Zadanie 7 - instalacja Wordpress
 
 ::: nonincremental
 
-- skopiuj program do katalogu domowego
-- program znajduje się w katalogu:  
+- odśwież stronę z Wordpress
+- uzupełnij dane do bazy danych
   ```
-  /var/www/html/user0/v2/files/guess.py
-  ```
-- uruchom program
-- popraw uprawnienia do pliku, jeśli będzie taka potrzeba
+  database: wordpress
+  user: wordpress
+  password: wordpress
+  host: localhost
+  ```  
+- zatwierdź
+- ups
 
 :::
 
-## Zadanie 7 - uruchomienie programu
+## Zadanie 7 - instalacja Wordpress
 
 ::: nonincremental
 
-- przejdź do katalogu domowego:  
+- Widzimy błąd, że plik `wp-config.php` nie mógł zostać utworzony.
+
+- Wynika to z faktu, że serwer WWW nie ma uprawnień do zapisu w katalogu Wordpress.
+
+- Musimy zmienić uprawnienia katalogu `/var/www/html/wordpress`.
+  ```{.bash}
+  chown -R apache:apache /var/www/html/wordpress
   ```
-  cd
-  ```
-- kopiowanie programu:  
-  ```
-  cp /var/www/html/user0/v2/files/guess.py ./
-  ```
-- uruchomienie programu:  
-  ```
-  ./guess.py
-  ```
+- cofnij się do strony z Wordpress i spróbuj ponownie
 
 :::
 
