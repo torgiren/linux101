@@ -264,7 +264,7 @@ Pierwszym zadaniem będzie uruchomienie programu `cmatrix`.
 ## Zadanie 1 - uruchomienie aplikacji
 
 Drugą aplikacją, którą uruchomimy, będzie aplikacja webowa.
-Aplikacja znajduje się w katalogu `/opt/flaskapp`.
+Aplikacja znajduje się w katalogu `/opt/flask-app`.
 
 ## Zadanie 1 - uruchomienie aplikacji
 
@@ -272,7 +272,7 @@ Aplikacja znajduje się w katalogu `/opt/flaskapp`.
 
 - przejdź do katalogu z aplikacją 
   ```{.bash}
-  cd /opt/flaskapp
+  cd /opt/flask-app
   ```
 - wyświetl zawartość katalogu
   ```{.bash}
@@ -323,7 +323,7 @@ Aby go wyświetlić, użyjemy polecenia `cat`.
 
 - przejdź do katalogu z aplikacją 
   ```{.bash}
-  cd /opt/flaskapp
+  cd /opt/flask-app
   ```
 - wyświetl zawartość pliku `baza.db`
   ```{.bash}
@@ -862,12 +862,12 @@ Konfiguracja bazy danych:
   wget https://wordpress.org/latest.tar.gz
   ```
 
-:::
-
 - zainstaluj program wget
   ```{.bash}
   dnf install wget
   ```
+
+:::
 
 
 ## Zadanie 7 - instalacja Wordpress
