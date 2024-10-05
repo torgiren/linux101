@@ -545,7 +545,7 @@ Należy zmienić nagłówek h1 z `Flask HTMX Demo` na dowlną inną wartość.
 
 - przejdź do katalogu z aplikacją 
   ```{.bash}
-  cd /opt/flaskapp
+  cd /opt/flask-app
   ```
 - uruchom edytor `vim` i otwórz plik `templates/index.html`
   ```{.bash}
