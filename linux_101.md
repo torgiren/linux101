@@ -8,6 +8,8 @@
 
 - Zapewnia warstwę abstrakcji pomiędzy sprzętem a programami użytkownika.
 
+- Koordynuje współdzielenie zasobów sprzętowych.
+
 - Pozwala na uruchamianie innych programów.
 
 ## Architektura
