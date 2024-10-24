@@ -286,7 +286,7 @@ Aplikacja znajduje się w katalogu `/opt/flask-app`.
   ```
 - przejdź do przeglądarki i otwórz stronę:  
   ```{.shell}
-  https://user<X>.warsztaty.linux.org.pl
+  https://user<X>.warsztaty.linux.org.pl/flask
   ```
 
 :::
