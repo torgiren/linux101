@@ -39,6 +39,16 @@ Linux
 - Programowanie (kontenery)
 - Raspberry Pi
 
+## Gdzie działa Linux?
+
+- smartwatche
+- raspberry pi
+- telefony
+- telewizory
+- komputery/laptopy
+- serwery
+- superkomputery
+
 ## Dlaczego Linux? {data-transition="none-out"}
 
 - Otwartość kodu źródłowego
