@@ -87,7 +87,7 @@ z httpd i mysql ok 150 MB RAM
 - Wpisz adres: `ssh.warsztaty.linux.org.pl`
 - Port to `82<XX>` np `8205`
 - Wpisz login: `user`
-- Wpisz hasło: `passwd13`
+- Wpisz hasło: `passwd13` (hasło nie będzie wyświetlane)
 - Już :)
 
 ## Prompt
