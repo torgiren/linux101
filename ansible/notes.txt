@@ -1,0 +1,1 @@
+certbot certonly --nginx -d 'ssh.warsztaty.linux.org.pl' 

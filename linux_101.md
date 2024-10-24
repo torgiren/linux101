@@ -85,8 +85,9 @@ z httpd i mysql ok 150 MB RAM
 
 - Ściągnij program PuTTY (https://putty.org/)
 - Wpisz adres: `ssh.warsztaty.linux.org.pl`
-- Wpisz login: `<userX>` (np. `user40`)
-- Wpisz hasło: `<userX>_pass` (np: `user40_pass`; hasło nie będzie wyświetlane)
+- Port to `82<XX>` np `8205`
+- Wpisz login: `user`
+- Wpisz hasło: `passwd13`
 - Już :)
 
 ## Prompt

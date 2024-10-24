@@ -2,51 +2,67 @@
   - all
   tasks:
   - name: install packages
-    apt:
+    package:
       name:
-        - apache2
-        - libapache2-mod-php
-        - php
-        - php-mysql
-        - php-imagick
-        - tree
-        - less
+        - podman
+        - nginx
+        - certbot
+        - python3-certbot-nginx.noarch
       state: latest
-      update_cache: yes
-  - name: create users
-    user:
-      name: "{{ item }}"
-      password: "{{ (item+'_pass') | password_hash('sha512', 'mysecretsalt') }}"
-      shell: /bin/bash
-      groups:
-        - www-data
-        - adm
-      append: yes
-    loop: "{{ students }}"
-  - name: enable port 20513
-    lineinfile:
-      path: /etc/apache2/ports.conf
-      line: "Listen 20513"
-    notify:
-      - restart apache2
+
+
+  - name: print certbot command
+    debug:
+      msg: "certbot --nginx -d www.warsztaty.linux.org.pl,{% for student in students %}{{ student }}.warsztaty.linux.org.pl{% if not loop.last %},{% endif %}{% endfor %}"
+
+  - pause:
+
   - name: copy vhost
     template:
       src: vhost.conf
-      dest: "/etc/apache2/sites-enabled/students.conf"
+      dest: "/etc/nginx/conf.d/vhost.conf"
     notify:
-      - restart apache2
-  - name: create document root
-    file:
-      state: directory
-      path: "/var/www/html/{{ item }}"
-      owner: "{{ item }}"
-      group: www-data
-      mode: '6775'
+      - restart nginx
+
+  - name: start nginx
+    service:
+      name: nginx
+      state: started
+
+  - name: create user
+    user:
+      name: "container"
+      state: present
+    register: _user
+
+  - name: run loginctl enable-linger container
+    command: "loginctl enable-linger container"
+
+  - name: Run container
+    vars:
+      id: "{{ '%02d' | format(item[4:]|int) }}"
+    #command: podman run --rm -d --name user-{{ item }} -p 82{{ id }}:22 -p 81{{ id }}:5000 -p 80{{ id }}:80 registry.gitlab.exphost.pl/torgiren/fedora-sshd:latest
     loop: "{{ students }}"
+    containers.podman.podman_container:
+      name: user-{{ item }}
+      image: registry.gitlab.exphost.pl/torgiren/fedora-sshd:latest
+      state: started
+      ports:
+        - 82{{ id }}:22
+        - 81{{ id }}:5000
+        - 80{{ id }}:80
+      hostname: user-{{ item }}
+      rm: yes
+      tty: yes
+      interactive: yes
+      detach: yes
+    loop: "{{ students }}"
+    become: yes
+    become_user: container
 
   handlers:
-    - name: restart apache2
+    - name: restart nginx
       service:
-        name: apache2
+        name: nginx
         state: restarted
 
