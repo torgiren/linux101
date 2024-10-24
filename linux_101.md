@@ -389,7 +389,7 @@ Możemy zmienić nazwę pliku `baza.db.bak` na `baza.db.<data>`.
   ```
 - zmień nazwę pliku `baza.db.bak` na `baza.db.<data>`
   ```{.bash}
-  mv baza.db.bak baza.db.20241010`
+  mv baza.db.bak baza.db.20241010
   ```
 - wyświetl zawartość katalogu, aby sprawdzić, czy plik został zmieniony
   ```{.bash}
@@ -957,10 +957,14 @@ Napotykamy pierwszy problem - brak obsługi mysql w PHP.
   ```
   man ls
   ```
-- społeczności:
-  Polska Grupa Użytkowników Linuksa
+- społeczności:  
+  Polska Grupa Użytkowników Linuksa  
   https://discord.linux.org.pl
 
 - praktyka, praktyka, praktyka (maszyna wirtualna, vps, Raspberry Pi)
 
 ## Pytania?
+
+![](img/discord_qr.png){heigth=50px}
+
+https://discord.linux.org.pl
