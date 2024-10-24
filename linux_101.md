@@ -1,5 +1,5 @@
 % Wprowadzenie do systemu GNU/Linux
-% Marcin Fabrykowski
+% Marcin Fabrykowski, Łukasz Stelmach
 % ![](img/logo.png){heigth=50px}
 
 ## Czym jest system operacyjny???
