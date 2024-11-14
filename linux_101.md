@@ -338,30 +338,30 @@ Aby go wyświetlić, użyjemy polecenia `cat`.
   ```{.bash}
   cd /opt/flask-app
   ```
-- wyświetl zawartość pliku `baza.db`
+- wyświetl zawartość pliku `data.db`
   ```{.bash}
-  cat baza.db
+  cat data.db
   ```
 
 :::
 
 ## Zadanie 2b - kopiowanie pliku
 
-Możemy zrobić kopię pliku `baza.db` i nazwać ją `baza.db.bak`.
+Możemy zrobić kopię pliku `data.db` i nazwać ją `data.db.bak`.
 
 ::: nonincremental
 
-- skopiuj plik `baza.db` do pliku `baza.db.bak`
+- skopiuj plik `data.db` do pliku `data.db.bak`
   ```{.bash}
-  cp baza.db baza.db.bak
+  cp data.db data.db.bak
   ```
 - wyświetl zawartość katalogu, aby sprawdzić, czy plik został skopiowany
   ```{.bash}
   ls
   ```
-- wyświetl zawartość pliku `baza.db.bak`
+- wyświetl zawartość pliku `data.db.bak`
   ```{.bash}
-  cat baza.db.bak
+  cat data.db.bak
   ```
 
 :::
@@ -373,17 +373,17 @@ Możemy również przywrócić bazę danych z kopii.
 ::: nonincremental
 
 - dodaj nowe dane do aplikacji
-- wyświetl zawartość pliku `baza.db`
+- wyświetl zawartość pliku `data.db`
   ```{.bash}
-  cat baza.db
+  cat data.db
   ```
 - przywróć bazę danych z kopii
   ```{.bash}
-  cp baza.db.bak baza.db
+  cp data.db.bak data.db
   ```
-- wyświetl zawartość pliku `baza.db`
+- wyświetl zawartość pliku `data.db`
   ```{.bash}
-  cat baza.db
+  cat data.db
   ```
 - odśwież stronę aplikacji
 
@@ -391,7 +391,7 @@ Możemy również przywrócić bazę danych z kopii.
 
 ## Zadanie 2c - zmiana nazwy pliku
 
-Możemy zmienić nazwę pliku `baza.db.bak` na `baza.db.<data>`.
+Możemy zmienić nazwę pliku `data.db.bak` na `data.db.<data>`.
 
 ::: nonincremental
 
@@ -399,9 +399,9 @@ Możemy zmienić nazwę pliku `baza.db.bak` na `baza.db.<data>`.
   ```{.bash}
   ls
   ```
-- zmień nazwę pliku `baza.db.bak` na `baza.db.<data>`
+- zmień nazwę pliku `data.db.bak` na `data.db.<data>`
   ```{.bash}
-  mv baza.db.bak baza.db.20241010
+  mv data.db.bak data.db.20241010
   ```
 - wyświetl zawartość katalogu, aby sprawdzić, czy plik został zmieniony
   ```{.bash}
@@ -412,7 +412,7 @@ Możemy zmienić nazwę pliku `baza.db.bak` na `baza.db.<data>`.
 
 ## Zadanie 2d - usuwanie pliku
 
-Możemy usunąć plik `baza.db.20241010`.
+Możemy usunąć plik `data.db.20241010`.
 
 ::: nonincremental
 
@@ -420,9 +420,9 @@ Możemy usunąć plik `baza.db.20241010`.
   ```{.bash}
   ls
   ```
-- usuń plik `baza.db.20241010`
+- usuń plik `data.db.20241010`
   ```{.bash}
-  rm baza.db.20241010
+  rm data.db.20241010
   ```
 - wyświetl zawartość katalogu, aby sprawdzić, czy plik został usunięty
   ```{.bash}
