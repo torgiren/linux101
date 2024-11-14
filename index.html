@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <meta name="author" content="Marcin Fabrykowski, Łukasz Stelmach">
+  <meta name="author" content="Marcin Fabrykowski">
   <title>Wprowadzenie do systemu GNU/Linux</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -39,7 +39,7 @@
 
 <section id="title-slide">
   <h1 class="title">Wprowadzenie do systemu GNU/Linux</h1>
-  <p class="author">Marcin Fabrykowski, Łukasz Stelmach</p>
+  <p class="author">Marcin Fabrykowski</p>
   <p class="date"><img data-src="img/logo.png" data-heigth="50px" /></p>
 </section>
 
@@ -388,25 +388,25 @@ użyjemy polecenia <code>cat</code>.</p>
 <ul>
 <li><p>przejdź do katalogu z aplikacją</p>
 <pre ><code class="bash">cd /opt/flask-app</code></pre></li>
-<li><p>wyświetl zawartość pliku <code>baza.db</code></p>
-<pre ><code class="bash">cat baza.db</code></pre></li>
+<li><p>wyświetl zawartość pliku <code>data.db</code></p>
+<pre ><code class="bash">cat data.db</code></pre></li>
 </ul>
 </div>
 </section>
 <section id="zadanie-2b---kopiowanie-pliku" class="slide level2">
 <h2>Zadanie 2b - kopiowanie pliku</h2>
-<p>Możemy zrobić kopię pliku <code>baza.db</code> i nazwać ją
-<code>baza.db.bak</code>.</p>
+<p>Możemy zrobić kopię pliku <code>data.db</code> i nazwać ją
+<code>data.db.bak</code>.</p>
 <div>
 <ul>
-<li><p>skopiuj plik <code>baza.db</code> do pliku
-<code>baza.db.bak</code></p>
-<pre ><code class="bash">cp baza.db baza.db.bak</code></pre></li>
+<li><p>skopiuj plik <code>data.db</code> do pliku
+<code>data.db.bak</code></p>
+<pre ><code class="bash">cp data.db data.db.bak</code></pre></li>
 <li><p>wyświetl zawartość katalogu, aby sprawdzić, czy plik został
 skopiowany</p>
 <pre ><code class="bash">ls</code></pre></li>
-<li><p>wyświetl zawartość pliku <code>baza.db.bak</code></p>
-<pre ><code class="bash">cat baza.db.bak</code></pre></li>
+<li><p>wyświetl zawartość pliku <code>data.db.bak</code></p>
+<pre ><code class="bash">cat data.db.bak</code></pre></li>
 </ul>
 </div>
 </section>
@@ -416,27 +416,27 @@ skopiowany</p>
 <div>
 <ul>
 <li><p>dodaj nowe dane do aplikacji</p></li>
-<li><p>wyświetl zawartość pliku <code>baza.db</code></p>
-<pre ><code class="bash">cat baza.db</code></pre></li>
+<li><p>wyświetl zawartość pliku <code>data.db</code></p>
+<pre ><code class="bash">cat data.db</code></pre></li>
 <li><p>przywróć bazę danych z kopii</p>
-<pre ><code class="bash">cp baza.db.bak baza.db</code></pre></li>
-<li><p>wyświetl zawartość pliku <code>baza.db</code></p>
-<pre ><code class="bash">cat baza.db</code></pre></li>
+<pre ><code class="bash">cp data.db.bak data.db</code></pre></li>
+<li><p>wyświetl zawartość pliku <code>data.db</code></p>
+<pre ><code class="bash">cat data.db</code></pre></li>
 <li><p>odśwież stronę aplikacji</p></li>
 </ul>
 </div>
 </section>
 <section id="zadanie-2c---zmiana-nazwy-pliku" class="slide level2">
 <h2>Zadanie 2c - zmiana nazwy pliku</h2>
-<p>Możemy zmienić nazwę pliku <code>baza.db.bak</code> na
-<code>baza.db.&lt;data&gt;</code>.</p>
+<p>Możemy zmienić nazwę pliku <code>data.db.bak</code> na
+<code>data.db.&lt;data&gt;</code>.</p>
 <div>
 <ul>
 <li><p>wyświetl zawartość katalogu, aby sprawdzić, czy plik istnieje</p>
 <pre ><code class="bash">ls</code></pre></li>
-<li><p>zmień nazwę pliku <code>baza.db.bak</code> na
-<code>baza.db.&lt;data&gt;</code></p>
-<pre ><code class="bash">mv baza.db.bak baza.db.20241010</code></pre></li>
+<li><p>zmień nazwę pliku <code>data.db.bak</code> na
+<code>data.db.&lt;data&gt;</code></p>
+<pre ><code class="bash">mv data.db.bak data.db.20241010</code></pre></li>
 <li><p>wyświetl zawartość katalogu, aby sprawdzić, czy plik został
 zmieniony</p>
 <pre ><code class="bash">ls</code></pre></li>
@@ -445,13 +445,13 @@ zmieniony</p>
 </section>
 <section id="zadanie-2d---usuwanie-pliku" class="slide level2">
 <h2>Zadanie 2d - usuwanie pliku</h2>
-<p>Możemy usunąć plik <code>baza.db.20241010</code>.</p>
+<p>Możemy usunąć plik <code>data.db.20241010</code>.</p>
 <div>
 <ul>
 <li><p>wyświetl zawartość katalogu, aby sprawdzić, czy plik istnieje</p>
 <pre ><code class="bash">ls</code></pre></li>
-<li><p>usuń plik <code>baza.db.20241010</code></p>
-<pre ><code class="bash">rm baza.db.20241010</code></pre></li>
+<li><p>usuń plik <code>data.db.20241010</code></p>
+<pre ><code class="bash">rm data.db.20241010</code></pre></li>
 <li><p>wyświetl zawartość katalogu, aby sprawdzić, czy plik został
 usunięty</p>
 <pre ><code class="bash">ls</code></pre></li>
