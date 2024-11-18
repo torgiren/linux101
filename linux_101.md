@@ -2,6 +2,10 @@
 % Marcin Fabrykowski
 % ![](img/logo.png){heigth=50px}
 
+## Prezentacja dostępna pod adresem:
+
+http://www.warsztaty.linux.org.pl
+
 ## Czym jest system operacyjny???
 
 - To program, który zarządza zasobami komputera.
