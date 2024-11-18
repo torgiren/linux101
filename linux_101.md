@@ -659,6 +659,10 @@ w edytorze `vim`:
 
 ::: nonincremental
 
+- przejdź do katalogu z aplikacją 
+  ```{.bash}
+  cd /opt/flask-app
+  ```
 - uruchom edytor `nano` i otwórz plik `templates/index.html`
   ```{.bash}
   nano templates/index.html
