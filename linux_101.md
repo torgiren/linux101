@@ -106,7 +106,7 @@ Linux
 - kliknij menu start
 - uruchom PowerShell
 - wpisz:
-- ssh user@ssh.warsztaty.linux.org.pl -p 82<XX>
+- ``ssh user@ssh.warsztaty.linux.org.pl -p 82<XX>``
 - Wpisz hasło: `passwd13` (hasło nie będzie wyświetlane)
 - Już :)
 
