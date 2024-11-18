@@ -111,9 +111,6 @@ data-transition="none-out">
 <li class="fragment"><p>Konfigurowalność</p></li>
 <li class="fragment"><p>Zasobożerność (a raczej jej brak)</p></li>
 </ul>
-<aside class="notes">
-<p>goły system ok 70 MB RAM. z httpd i mysql ok 150 MB RAM</p>
-</aside>
 </section>
 <section id="plan-warsztatów" class="slide level2">
 <h2>Plan warsztatów</h2>
@@ -142,16 +139,25 @@ zastąpić odpowiednią wartością (bez znaków <code>&lt;</code> i
 <li class="fragment"><code>cd &lt;userX&gt;</code> oznacza
 <code>cd user40</code> (dla <code>user40</code>)</li>
 </ul>
+<!---
+## łączenie się z serwerem
+
+- Ściągnij program PuTTY (https://putty.org/)
+- Wpisz adres: `ssh.warsztaty.linux.org.pl`
+- Port to `82<XX>` np `8205`
+- Wpisz login: `user`
+- Wpisz hasło: `passwd13` (hasło nie będzie wyświetlane)
+- Już :)
+
+--->
 </section>
 <section id="łączenie-się-z-serwerem" class="slide level2">
 <h2>łączenie się z serwerem</h2>
 <ul>
-<li class="fragment">Ściągnij program PuTTY (https://putty.org/)</li>
-<li class="fragment">Wpisz adres:
-<code>ssh.warsztaty.linux.org.pl</code></li>
-<li class="fragment">Port to <code>82&lt;XX&gt;</code> np
-<code>8205</code></li>
-<li class="fragment">Wpisz login: <code>user</code></li>
+<li class="fragment">kliknij menu start</li>
+<li class="fragment">uruchom PowerShell</li>
+<li class="fragment">wpisz:
+<code>ssh user@ssh.warsztaty.linux.org.pl -p 82&lt;XX&gt;</code></li>
 <li class="fragment">Wpisz hasło: <code>passwd13</code> (hasło nie
 będzie wyświetlane)</li>
 <li class="fragment">Już :)</li>
@@ -176,6 +182,33 @@ będzie wyświetlane)</li>
 class="fragment"><code>polecenie</code>␣<code>[opcje]</code>␣<code>[argumenty]</code></li>
 <li class="fragment"><code>ls -l /etc</code></li>
 </ul>
+</section>
+<section id="zadanie-0---pierwsze-uruchomienie-programu"
+class="slide level2">
+<h2>Zadanie 0 - pierwsze uruchomienie programu</h2>
+<p>Pierwszym zadaniem będzie uruchomienie programu
+<code>cmatrix</code>.</p>
+<div>
+<ul>
+<li><p>aby uruchomić program, wpisz jego nazwę i naciśnij
+<code>Enter</code></p>
+<pre ><code class="bash">cmatrix</code></pre></li>
+<li><p>aby zakończyć program, naciśnij <code>CTRL+c</code></p></li>
+</ul>
+</div>
+</section>
+<section id="zadanie-0---przekazywanie-parametrów" class="slide level2">
+<h2>Zadanie 0 - przekazywanie parametrów</h2>
+<div>
+<ul>
+<li><p>parametry mogą być bez wartości, np. <code>-r</code></p>
+<pre ><code class="shell">cmatrix -r</code></pre></li>
+<li><p>parametry mogą mieć wartość, np. <code>-C red</code></p>
+<pre ><code class="shell">cmatrix -C red</code></pre></li>
+<li><p>parametry można łączyć</p>
+<pre ><code class="shell">cmatrix -C blue -u 4 -s</code></pre></li>
+</ul>
+</div>
 </section>
 <section id="struktura-systemu-plików" class="slide level2">
 <h2>Struktura systemu plików</h2>
@@ -210,6 +243,68 @@ class="fragment"><code>polecenie</code>␣<code>[opcje]</code>␣<code>[argument
 /var/www/html/user1/strona/index.html
 /home/user1/strona/index.html
 /home/user1/strona/assets/images/show-event-02.jpg</code></pre>
+</section>
+<section id="poruszanie-się-po-systemie" class="slide level2">
+<h2>Poruszanie się po systemie</h2>
+<ul>
+<li class="fragment"><code>pwd</code> - wyświetla ścieżkę do bieżącego
+katalogu</li>
+<li class="fragment"><code>ls</code> - wyświetla zawartość katalogu</li>
+<li class="fragment"><code>cd &lt;katalog&gt;</code> - zmienia bieżący
+katalog</li>
+<li class="fragment"><code>mkdir</code> - tworzy katalog</li>
+<li class="fragment"><code>rmdir</code> - usuwa katalog</li>
+</ul>
+</section>
+<section id="najważniejsze-katalogi" class="slide level2">
+<h2>najważniejsze katalogi</h2>
+<div>
+<ul>
+<li><code>/</code> - katalog główny</li>
+<li><code>/etc</code> - konfiguracja systemu</li>
+<li><code>/bin</code>, <code>/sbin</code> - programy systemowe</li>
+<li><code>/usr</code> - programy użytkowe</li>
+<li><code>/home</code> - katalogi użytkowników</li>
+<li><code>/tmp</code> - dane tymczasowe</li>
+<li><code>.</code> - bieżący katalog</li>
+<li><code>..</code> - katalog nadrzędny</li>
+</ul>
+</div>
+</section>
+<section id="zadanie-1---uruchomienie-aplikacji" class="slide level2">
+<h2>Zadanie 1 - uruchomienie aplikacji</h2>
+<p>Drugą aplikacją, którą uruchomimy, będzie aplikacja webowa. Aplikacja
+znajduje się w katalogu <code>/opt/flask-app</code>.</p>
+<p>Jest to aplikacja webowa, więc będziemy mogli ją zobaczyć w
+przeglądarce.</p>
+<p>Dostępna będzie pod adresem:</p>
+<p>https://user<X>.warsztaty.linux.org.pl/flask</p>
+</section>
+<section id="zadanie-1---uruchomienie-aplikacji-1" class="slide level2">
+<h2>Zadanie 1 - uruchomienie aplikacji</h2>
+<div>
+<ul>
+<li><p>przejdź do katalogu z aplikacją</p>
+<pre ><code class="bash">cd /opt/flask-app</code></pre></li>
+<li><p>wyświetl zawartość katalogu</p>
+<pre ><code class="bash">ls</code></pre></li>
+<li><p>uruchom aplikację</p>
+<pre ><code class="bash">./app.py</code></pre></li>
+</ul>
+</div>
+</section>
+<section id="zadanie-1---uruchomienie-aplikacji-2" class="slide level2">
+<h2>Zadanie 1 - uruchomienie aplikacji</h2>
+<div>
+<ul>
+<li><p>przejdź do przeglądarki i otwórz stronę:</p>
+<pre ><code class="shell">https://user&lt;X&gt;.warsztaty.linux.org.pl/flask</code></pre></li>
+<li><p>zatrzymaj aplikację w terminalu</p>
+<pre ><code class="bash">CTRL+c</code></pre></li>
+<li><p>zobaczmy, co znajduje się w katalogu aplikacji</p>
+<pre ><code class="bash">ls</code></pre></li>
+</ul>
+</div>
 </section>
 <section id="ścieżki-do-plików-i-katalogów" class="slide level2">
 <h2>Ścieżki do plików i katalogów</h2>
@@ -263,82 +358,6 @@ względem katalogu głównego</li>
 └── user2 &lt;==
     └── notatki.txt</code></pre>
 </div>
-</div>
-</section>
-<section id="poruszanie-się-po-systemie" class="slide level2">
-<h2>Poruszanie się po systemie</h2>
-<ul>
-<li class="fragment"><code>pwd</code> - wyświetla ścieżkę do bieżącego
-katalogu</li>
-<li class="fragment"><code>ls</code> - wyświetla zawartość katalogu</li>
-<li class="fragment"><code>cd &lt;katalog&gt;</code> - zmienia bieżący
-katalog</li>
-<li class="fragment"><code>mkdir</code> - tworzy katalog</li>
-<li class="fragment"><code>rmdir</code> - usuwa katalog</li>
-<li class="fragment"><code>tree</code> - wyświetla strukturę
-katalogów</li>
-</ul>
-</section>
-<section id="najważniejsze-katalogi" class="slide level2">
-<h2>najważniejsze katalogi</h2>
-<div>
-<ul>
-<li><code>/</code> - katalog główny</li>
-<li><code>/etc</code> - konfiguracja systemu</li>
-<li><code>/bin</code>, <code>/sbin</code> - programy systemowe</li>
-<li><code>/usr</code> - programy użytkowe</li>
-<li><code>/home</code> - katalogi użytkowników</li>
-<li><code>/tmp</code> - dane tymczasowe</li>
-<li><code>.</code> - bieżący katalog</li>
-<li><code>..</code> - katalog nadrzędny</li>
-</ul>
-</div>
-</section>
-<section id="zadanie-0---pierwsze-uruchomienie-programu"
-class="slide level2">
-<h2>Zadanie 0 - pierwsze uruchomienie programu</h2>
-<p>Pierwszym zadaniem będzie uruchomienie programu
-<code>cmatrix</code>.</p>
-<div>
-<ul>
-<li><p>aby uruchomić program, wpisz jego nazwę i naciśnij
-<code>Enter</code></p>
-<pre ><code class="bash">cmatrix</code></pre></li>
-<li><p>aby zakończyć program, naciśnij <code>CTRL+c</code></p></li>
-</ul>
-</div>
-</section>
-<section id="zadanie-0---przekazywanie-parametrów" class="slide level2">
-<h2>Zadanie 0 - przekazywanie parametrów</h2>
-<div>
-<ul>
-<li><p>parametry mogą być bez wartości, np. <code>-r</code></p>
-<pre ><code class="shell">cmatrix -r</code></pre></li>
-<li><p>parametry mogą mieć wartość, np. <code>-C red</code></p>
-<pre ><code class="shell">cmatrix -C red</code></pre></li>
-<li><p>parametry można łączyć</p>
-<pre ><code class="shell">cmatrix -C blue -u 4 -s</code></pre></li>
-</ul>
-</div>
-</section>
-<section id="zadanie-1---uruchomienie-aplikacji" class="slide level2">
-<h2>Zadanie 1 - uruchomienie aplikacji</h2>
-<p>Drugą aplikacją, którą uruchomimy, będzie aplikacja webowa. Aplikacja
-znajduje się w katalogu <code>/opt/flask-app</code>.</p>
-</section>
-<section id="zadanie-1---uruchomienie-aplikacji-1" class="slide level2">
-<h2>Zadanie 1 - uruchomienie aplikacji</h2>
-<div>
-<ul>
-<li><p>przejdź do katalogu z aplikacją</p>
-<pre ><code class="bash">cd /opt/flask-app</code></pre></li>
-<li><p>wyświetl zawartość katalogu</p>
-<pre ><code class="bash">ls</code></pre></li>
-<li><p>uruchom aplikację</p>
-<pre ><code class="bash">./app.py</code></pre></li>
-<li><p>przejdź do przeglądarki i otwórz stronę:</p>
-<pre ><code class="shell">https://user&lt;X&gt;.warsztaty.linux.org.pl/flask</code></pre></li>
-</ul>
 </div>
 </section>
 <section id="operacje-na-plikach-i-katalogach" class="slide level2">
@@ -399,8 +418,11 @@ użyjemy polecenia <code>cat</code>.</p>
 </section>
 <section id="zadanie-2b---kopiowanie-pliku" class="slide level2">
 <h2>Zadanie 2b - kopiowanie pliku</h2>
-<p>Możemy zrobić kopię pliku <code>data.db</code> i nazwać ją
-<code>data.db.bak</code>.</p>
+<p>Zrób kopię naszej bazy danych znajdującej się w pliku
+<code>data.db</code>.</p>
+</section>
+<section id="zadanie-2b---kopiowanie-pliku-1" class="slide level2">
+<h2>Zadanie 2b - kopiowanie pliku</h2>
 <div>
 <ul>
 <li><p>skopiuj plik <code>data.db</code> do pliku
@@ -414,9 +436,13 @@ skopiowany</p>
 </ul>
 </div>
 </section>
-<section id="zadanie-2b---kopiowanie-pliku-1" class="slide level2">
+<section id="zadanie-2b---kopiowanie-pliku-2" class="slide level2">
 <h2>Zadanie 2b - kopiowanie pliku</h2>
-<p>Możemy również przywrócić bazę danych z kopii.</p>
+<p>Dokonaj zmian w aplikacji,</p>
+<p>a następnie przywróć bazę danych z kopii.</p>
+</section>
+<section id="zadanie-2b---kopiowanie-pliku-3" class="slide level2">
+<h2>Zadanie 2b - kopiowanie pliku</h2>
 <div>
 <ul>
 <li><p>dodaj nowe dane do aplikacji</p></li>
@@ -432,8 +458,11 @@ skopiowany</p>
 </section>
 <section id="zadanie-2c---zmiana-nazwy-pliku" class="slide level2">
 <h2>Zadanie 2c - zmiana nazwy pliku</h2>
-<p>Możemy zmienić nazwę pliku <code>data.db.bak</code> na
-<code>data.db.&lt;data&gt;</code>.</p>
+<p>Nazwij plik backupu tak, aby zawierał datę utworzenia.</p>
+<p>Pomoże to w przyszłości, gdy będziemy mieli wiele kopii pliku.</p>
+</section>
+<section id="zadanie-2c---zmiana-nazwy-pliku-1" class="slide level2">
+<h2>Zadanie 2c - zmiana nazwy pliku</h2>
 <div>
 <ul>
 <li><p>wyświetl zawartość katalogu, aby sprawdzić, czy plik istnieje</p>
@@ -449,7 +478,10 @@ zmieniony</p>
 </section>
 <section id="zadanie-2d---usuwanie-pliku" class="slide level2">
 <h2>Zadanie 2d - usuwanie pliku</h2>
-<p>Możemy usunąć plik <code>data.db.20241010</code>.</p>
+<p>Usuń plik ze starszą kopią bazy danych.</p>
+</section>
+<section id="zadanie-2d---usuwanie-pliku-1" class="slide level2">
+<h2>Zadanie 2d - usuwanie pliku</h2>
 <div>
 <ul>
 <li><p>wyświetl zawartość katalogu, aby sprawdzić, czy plik istnieje</p>
@@ -507,7 +539,11 @@ class="slide level2">
 </section>
 <section id="zadanie-3b---instalacja-programu" class="slide level2">
 <h2>Zadanie 3b - instalacja programu</h2>
-<p>Zainstalujemy edytor tekstu <code>vim</code>.</p>
+<p>Zainstalujemy program <code>vim</code>, który jest edytorem
+tekstu.</p>
+</section>
+<section id="zadanie-3b---instalacja-programu-1" class="slide level2">
+<h2>Zadanie 3b - instalacja programu</h2>
 <div>
 <ul>
 <li><p>sprawdź czy program <code>vim</code> jest zainstalowany</p>
@@ -590,6 +626,24 @@ data-transition="none-in">
 </ul></li>
 </ul>
 </section>
+<section id="zadanie-3c---instalacja-programu" class="slide level2">
+<h2>Zadanie 3c - instalacja programu</h2>
+<p>Zainstaluj program <code>nano</code>.</p>
+</section>
+<section id="zadanie-3c---instalacja-programu-1" class="slide level2">
+<h2>Zadanie 3c - instalacja programu</h2>
+<div>
+<ul>
+<li><p>sprawdź czy program <code>nano</code> jest zainstalowany</p>
+<pre ><code class="bash">nano</code></pre></li>
+<li><p>spróbuj zainstalować program <code>nano</code> jako
+użytkownik</p>
+<pre ><code class="bash">dnf install nano</code></pre></li>
+<li><p>zainstaluj program <code>nano</code> jako administrator</p>
+<pre ><code class="bash">sudo dnf install nano</code></pre></li>
+</ul>
+</div>
+</section>
 <section id="zadanie-4---edycja-pliku" class="slide level2">
 <h2>Zadanie 4 - edycja pliku</h2>
 <p>Naszym zadaniem będzie zmiana nagłówka w naszej aplikacji</p>
@@ -598,8 +652,8 @@ data-transition="none-in">
 <p>Należy zmienić nagłówek h1 z <code>Flask HTMX Demo</code> na dowlną
 inną wartość.</p>
 </section>
-<section id="zadanie-4---edycja-pliku-1" class="slide level2">
-<h2>Zadanie 4 - edycja pliku</h2>
+<section id="zadanie-4---edycja-pliku-vim" class="slide level2">
+<h2>Zadanie 4 - edycja pliku (vim)</h2>
 <div>
 <ul>
 <li><p>przejdź do katalogu z aplikacją</p>
@@ -612,8 +666,8 @@ inną wartość.</p>
 </ul>
 </div>
 </section>
-<section id="zadanie-4---edycja-pliku-2" class="slide level2">
-<h2>Zadanie 4 - edycja pliku</h2>
+<section id="zadanie-4---edycja-pliku-vim-1" class="slide level2">
+<h2>Zadanie 4 - edycja pliku (vim)</h2>
 <p>w edytorze <code>vim</code>:</p>
 <div>
 <ul>
@@ -627,7 +681,20 @@ inną wartość.</p>
 </ul>
 </div>
 </section>
-<section id="zadanie-4---edycja-pliku-3" class="slide level2">
+<section id="zadanie-4---edycja-pliku-nano" class="slide level2">
+<h2>Zadanie 4 - edycja pliku (nano)</h2>
+<div>
+<ul>
+<li><p>uruchom edytor <code>nano</code> i otwórz plik
+<code>templates/index.html</code></p>
+<pre ><code class="bash">nano templates/index.html</code></pre></li>
+<li><p>znajdź nagłówek h1 i zmień jego wartość</p></li>
+<li><p>zapisz plik poprzez <code>CTRL+o</code></p></li>
+<li><p>wyjdź z edytora poprzez <code>CTRL+x</code></p></li>
+</ul>
+</div>
+</section>
+<section id="zadanie-4---edycja-pliku-1" class="slide level2">
 <h2>Zadanie 4 - edycja pliku</h2>
 <div>
 <ul>
@@ -652,11 +719,27 @@ terminalach jednocześnie</li>
 class="slide level2">
 <h2>Zadanie 5 - praca na wielu terminalach</h2>
 <p>Naszym zadaniem będzie równoległe edytowanie pliku index.html or
-uruchomienie aplikacji</p>
+uruchomienie aplikacji.</p>
+<p>Wykorzystamy do tego dwa terminale.</p>
+</section>
+<section id="zadanie-5---praca-na-wielu-terminalach-1"
+class="slide level2">
+<h2>Zadanie 5 - praca na wielu terminalach</h2>
 <div>
 <ul>
-<li>otwórz drugi terminal</li>
-<li>zaloguj się jako ten sam użytkownik</li>
+<li><p>otwórz drugi terminal</p></li>
+<li><p>zaloguj się jako ten sam użytkownik</p>
+<pre ><code class="bash">ssh user@ssh.warsztaty.linux.org.pl -p 82&lt;XX&gt;``</code></pre></li>
+<li><p>przejdź do katalogu z aplikacją</p>
+<pre ><code class="bash">cd /opt/flask-app</code></pre></li>
+</ul>
+</div>
+</section>
+<section id="zadanie-5---praca-na-wielu-terminalach-2"
+class="slide level2">
+<h2>Zadanie 5 - praca na wielu terminalach</h2>
+<div>
+<ul>
 <li>w pierwszym terminalu uruchom aplikację</li>
 <li>w drugim terminalu otwórz plik <code>index.html</code> i dokonuj
 zmian</li>

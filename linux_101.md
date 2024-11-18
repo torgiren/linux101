@@ -67,14 +67,6 @@ Linux
 
 - Zasobożerność (a raczej jej brak)
 
-::: notes
-
-goły system ok 70 MB RAM.
-z httpd i mysql ok 150 MB RAM
-
-:::
-
-
 ## Plan warsztatów
 
 ::: nonincremental
@@ -97,12 +89,23 @@ z httpd i mysql ok 150 MB RAM
 - `<nazwa>` - zmienna, którą należy zastąpić odpowiednią wartością (bez znaków `<` i `>`)
 - `cd <userX>` oznacza `cd user40` (dla `user40`)
 
+<!---
 ## łączenie się z serwerem
 
 - Ściągnij program PuTTY (https://putty.org/)
 - Wpisz adres: `ssh.warsztaty.linux.org.pl`
 - Port to `82<XX>` np `8205`
 - Wpisz login: `user`
+- Wpisz hasło: `passwd13` (hasło nie będzie wyświetlane)
+- Już :)
+
+--->
+
+## łączenie się z serwerem
+
+- kliknij menu start
+- uruchom PowerShell
+- wpisz: ``ssh user@ssh.warsztaty.linux.org.pl -p 82<XX>``
 - Wpisz hasło: `passwd13` (hasło nie będzie wyświetlane)
 - Już :)
 
@@ -123,6 +126,38 @@ user3@warsztaty:~$
 
 - `polecenie`&blank;`[opcje]`&blank;`[argumenty]`
 - `ls -l /etc`
+
+## Zadanie 0 - pierwsze uruchomienie programu
+
+Pierwszym zadaniem będzie uruchomienie programu `cmatrix`.
+
+::: nonincremental
+
+- aby uruchomić program, wpisz jego nazwę i naciśnij `Enter` 
+  ```{.bash}
+  cmatrix
+  ```
+- aby zakończyć program, naciśnij `CTRL+c`
+
+:::
+
+## Zadanie 0 - przekazywanie parametrów
+
+::: nonincremental
+
+- parametry mogą być bez wartości, np. `-r`
+  ```{.shell}
+  cmatrix -r
+  ```
+- parametry mogą mieć wartość, np. `-C red`
+  ```{.shell}
+  cmatrix -C red
+  ```
+- parametry można łączyć
+  ```{.shell}
+  cmatrix -C blue -u 4 -s
+  ```
+:::
 
 ## Struktura systemu plików
 
@@ -158,6 +193,79 @@ Przykładowe ścieżki do plików i katalogów
 /home/user1/strona/index.html
 /home/user1/strona/assets/images/show-event-02.jpg
 ```
+
+
+## Poruszanie się po systemie
+
+- `pwd` - wyświetla ścieżkę do bieżącego katalogu
+- `ls` - wyświetla zawartość katalogu
+- `cd <katalog>` - zmienia bieżący katalog
+- `mkdir` - tworzy katalog
+- `rmdir` - usuwa katalog
+
+## najważniejsze katalogi
+
+::: nonincremental
+
+- `/` - katalog główny
+- `/etc` - konfiguracja systemu
+- `/bin`, `/sbin` - programy systemowe
+- `/usr` - programy użytkowe
+- `/home` - katalogi użytkowników
+- `/tmp` - dane tymczasowe
+- `.` - bieżący katalog
+- `..` - katalog nadrzędny
+
+:::
+
+## Zadanie 1 - uruchomienie aplikacji
+
+Drugą aplikacją, którą uruchomimy, będzie aplikacja webowa.
+Aplikacja znajduje się w katalogu `/opt/flask-app`.
+
+Jest to aplikacja webowa, więc będziemy mogli ją zobaczyć w przeglądarce.
+
+Dostępna będzie pod adresem:
+
+https://user<X>.warsztaty.linux.org.pl/flask
+
+## Zadanie 1 - uruchomienie aplikacji
+
+::: nonincremental
+
+- przejdź do katalogu z aplikacją 
+  ```{.bash}
+  cd /opt/flask-app
+  ```
+- wyświetl zawartość katalogu
+  ```{.bash}
+  ls
+  ```
+- uruchom aplikację 
+  ```{.bash}
+  ./app.py
+  ```
+
+:::
+
+## Zadanie 1 - uruchomienie aplikacji
+
+::: nonincremental
+
+- przejdź do przeglądarki i otwórz stronę:  
+  ```{.shell}
+  https://user<X>.warsztaty.linux.org.pl/flask
+  ```
+- zatrzymaj aplikację w terminalu
+  ```{.bash}
+  CTRL+c
+  ```
+- zobaczmy, co znajduje się w katalogu aplikacji
+  ```{.bash}
+  ls
+  ```
+
+:::
 
 ## Ścieżki do plików i katalogów
 
@@ -221,92 +329,6 @@ home/
 :::
 ::::::::::::::
 
-## Poruszanie się po systemie
-
-- `pwd` - wyświetla ścieżkę do bieżącego katalogu
-- `ls` - wyświetla zawartość katalogu
-- `cd <katalog>` - zmienia bieżący katalog
-- `mkdir` - tworzy katalog
-- `rmdir` - usuwa katalog
-- `tree` - wyświetla strukturę katalogów
-
-
-## najważniejsze katalogi
-
-::: nonincremental
-
-- `/` - katalog główny
-- `/etc` - konfiguracja systemu
-- `/bin`, `/sbin` - programy systemowe
-- `/usr` - programy użytkowe
-- `/home` - katalogi użytkowników
-- `/tmp` - dane tymczasowe
-- `.` - bieżący katalog
-- `..` - katalog nadrzędny
-
-:::
-
-## Zadanie 0 - pierwsze uruchomienie programu
-
-Pierwszym zadaniem będzie uruchomienie programu `cmatrix`.
-
-::: nonincremental
-
-- aby uruchomić program, wpisz jego nazwę i naciśnij `Enter` 
-  ```{.bash}
-  cmatrix
-  ```
-- aby zakończyć program, naciśnij `CTRL+c`
-
-:::
-
-## Zadanie 0 - przekazywanie parametrów
-
-::: nonincremental
-
-- parametry mogą być bez wartości, np. `-r`
-  ```{.shell}
-  cmatrix -r
-  ```
-- parametry mogą mieć wartość, np. `-C red`
-  ```{.shell}
-  cmatrix -C red
-  ```
-- parametry można łączyć
-  ```{.shell}
-  cmatrix -C blue -u 4 -s
-  ```
-:::
-
-## Zadanie 1 - uruchomienie aplikacji
-
-Drugą aplikacją, którą uruchomimy, będzie aplikacja webowa.
-Aplikacja znajduje się w katalogu `/opt/flask-app`.
-
-## Zadanie 1 - uruchomienie aplikacji
-
-::: nonincremental
-
-- przejdź do katalogu z aplikacją 
-  ```{.bash}
-  cd /opt/flask-app
-  ```
-- wyświetl zawartość katalogu
-  ```{.bash}
-  ls
-  ```
-
-- uruchom aplikację 
-  ```{.bash}
-  ./app.py
-  ```
-- przejdź do przeglądarki i otwórz stronę:  
-  ```{.shell}
-  https://user<X>.warsztaty.linux.org.pl/flask
-  ```
-
-:::
-
 ## Operacje na plikach i katalogach
 
 - `cat` - wyświetla zawartość pliku
@@ -351,7 +373,9 @@ Aby go wyświetlić, użyjemy polecenia `cat`.
 
 ## Zadanie 2b - kopiowanie pliku
 
-Możemy zrobić kopię pliku `data.db` i nazwać ją `data.db.bak`.
+Zrób kopię naszej bazy danych znajdującej się w pliku `data.db`.
+
+## Zadanie 2b - kopiowanie pliku
 
 ::: nonincremental
 
@@ -372,7 +396,11 @@ Możemy zrobić kopię pliku `data.db` i nazwać ją `data.db.bak`.
 
 ## Zadanie 2b - kopiowanie pliku
 
-Możemy również przywrócić bazę danych z kopii.
+Dokonaj zmian w aplikacji,
+
+a następnie przywróć bazę danych z kopii.
+
+## Zadanie 2b - kopiowanie pliku
 
 ::: nonincremental
 
@@ -395,7 +423,11 @@ Możemy również przywrócić bazę danych z kopii.
 
 ## Zadanie 2c - zmiana nazwy pliku
 
-Możemy zmienić nazwę pliku `data.db.bak` na `data.db.<data>`.
+Nazwij plik backupu tak, aby zawierał datę utworzenia.
+
+Pomoże to w przyszłości, gdy będziemy mieli wiele kopii pliku.
+
+## Zadanie 2c - zmiana nazwy pliku
 
 ::: nonincremental
 
@@ -416,7 +448,9 @@ Możemy zmienić nazwę pliku `data.db.bak` na `data.db.<data>`.
 
 ## Zadanie 2d - usuwanie pliku
 
-Możemy usunąć plik `data.db.20241010`.
+Usuń plik ze starszą kopią bazy danych.
+
+## Zadanie 2d - usuwanie pliku
 
 ::: nonincremental
 
@@ -481,7 +515,9 @@ Możemy usunąć plik `data.db.20241010`.
 
 ## Zadanie 3b - instalacja programu
 
-Zainstalujemy edytor tekstu `vim`.
+Zainstalujemy program `vim`, który jest edytorem tekstu.
+
+## Zadanie 3b - instalacja programu
 
 ::: nonincremental
 
@@ -548,6 +584,31 @@ Zainstalujemy edytor tekstu `vim`.
   - linijka poniżej: `o`
   - linijka powyżej: `O`
 
+## Zadanie 3c - instalacja programu
+
+Zainstaluj program ``nano``.
+
+## Zadanie 3c - instalacja programu
+
+::: nonincremental
+
+- sprawdź czy program ``nano`` jest zainstalowany
+  ```{.bash}
+  nano
+  ```
+
+- spróbuj zainstalować program `nano` jako użytkownik
+  ```{.bash}
+  dnf install nano
+  ```
+
+- zainstaluj program `nano` jako administrator
+  ```{.bash}
+  sudo dnf install nano
+  ```
+
+:::
+
 ## Zadanie 4 - edycja pliku
 
 Naszym zadaniem będzie zmiana nagłówka w naszej aplikacji
@@ -556,7 +617,7 @@ Kod html strony znajduje się w pliku `templates/index.html` względem katalogu 
 
 Należy zmienić nagłówek h1 z `Flask HTMX Demo` na dowlną inną wartość.
 
-## Zadanie 4 - edycja pliku
+## Zadanie 4 - edycja pliku (vim) 
 
 ::: nonincremental
 
@@ -573,7 +634,7 @@ Należy zmienić nagłówek h1 z `Flask HTMX Demo` na dowlną inną wartość.
 
 :::
 
-## Zadanie 4 - edycja pliku
+## Zadanie 4 - edycja pliku (vim)
 
 w edytorze `vim`:
 
@@ -590,6 +651,21 @@ w edytorze `vim`:
   ```{.bash}
   :wq
   ```
+
+:::
+
+## Zadanie 4 - edycja pliku (nano)
+
+::: nonincremental
+
+- uruchom edytor `nano` i otwórz plik `templates/index.html`
+  ```{.bash}
+  nano templates/index.html
+  ```
+
+- znajdź nagłówek h1 i zmień jego wartość
+- zapisz plik poprzez `CTRL+o`
+- wyjdź z edytora poprzez `CTRL+x`
 
 :::
 
@@ -615,12 +691,32 @@ w edytorze `vim`:
 
 ## Zadanie 5 - praca na wielu terminalach
 
-Naszym zadaniem będzie równoległe edytowanie pliku index.html or uruchomienie aplikacji
+Naszym zadaniem będzie równoległe edytowanie pliku index.html or uruchomienie aplikacji.
+
+Wykorzystamy do tego dwa terminale.
+
+## Zadanie 5 - praca na wielu terminalach
 
 ::: nonincremental
 
 - otwórz drugi terminal
 - zaloguj się jako ten sam użytkownik
+
+  ```{.bash}
+  ssh user@ssh.warsztaty.linux.org.pl -p 82<XX>``
+  ```
+
+- przejdź do katalogu z aplikacją
+  ```{.bash}
+  cd /opt/flask-app
+  ```
+
+:::
+
+## Zadanie 5 - praca na wielu terminalach
+
+::: nonincremental
+
 - w pierwszym terminalu uruchom aplikację
 - w drugim terminalu otwórz plik `index.html` i dokonuj zmian
 - zapisz plik bez wychodzenia z edytora
